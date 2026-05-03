@@ -1,0 +1,74 @@
+[
+  {
+    "load_id": "LD-001",
+    "origin": "Chicago, IL",
+    "destination": "Dallas, TX",
+    "pickup_datetime": "2025-05-05 08:00",
+    "delivery_datetime": "2025-05-06 18:00",
+    "equipment_type": "Dry Van",
+    "loadboard_rate": 2400,
+    "notes": "No touch freight",
+    "weight": 42000,
+    "commodity_type": "Electronics"
+  },
+  {
+    "load_id": "LD-002",
+    "origin": "Atlanta, GA",
+    "destination": "Miami, FL",
+    "pickup_datetime": "2025-05-06 09:00",
+    "delivery_datetime": "2025-05-07 14:00",
+    "equipment_type": "Reefer",
+    "loadboard_rate": 1800,
+    "notes": "Temperature controlled",
+    "weight": 38000,
+    "commodity_type": "Frozen Food"
+  },
+  {
+    "load_id": "LD-003",
+    "origin": "Los Angeles, CA",
+    "destination": "Phoenix, AZ",
+    "pickup_datetime": "2025-05-07 07:00",
+    "delivery_datetime": "2025-05-07 17:00",
+    "equipment_type": "Flatbed",
+    "loadboard_rate": 1200,
+    "notes": "Tarps required",
+    "weight": 35000,
+    "commodity_type": "Steel Coils"
+  },
+  {
+    "load_id": "LD-004",
+    "origin": "Dallas, TX",
+    "destination": "Houston, TX",
+    "pickup_datetime": "2025-05-08 06:00",
+    "delivery_datetime": "2025-05-08 14:00",
+    "equipment_type": "Dry Van",
+    "loadboard_rate": 850,
+    "notes": "Drop and hook",
+    "weight": 40000,
+    "commodity_type": "Auto Parts"
+  },
+  {
+    "load_id": "LD-005",
+    "origin": "Chicago, IL",
+    "destination": "Detroit, MI",
+    "pickup_datetime": "2025-05-09 07:00",
+    "delivery_datetime": "2025-05-09 16:00",
+    "equipment_type": "Flatbed",
+    "loadboard_rate": 1100,
+    "notes": "Oversized — permit required",
+    "weight": 47000,
+    "commodity_type": "Machinery"
+  },
+  {
+    "load_id": "LD-006",
+    "origin": "Los Angeles, CA",
+    "destination": "Las Vegas, NV",
+    "pickup_datetime": "2025-05-10 08:00",
+    "delivery_datetime": "2025-05-10 15:00",
+    "equipment_type": "Reefer",
+    "loadboard_rate": 950,
+    "notes": "Live load, driver assist required",
+    "weight": 36000,
+    "commodity_type": "Fresh Produce"
+  }
+]
