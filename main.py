@@ -55,9 +55,9 @@ class CallData(BaseModel):
     carrier_name: Optional[str] = None
     carrier_eligible: Optional[str] = None
     load_id: Optional[str] = None
-    loadboard_rate: Optional[float] = None
-    agreed_rate: Optional[float] = None
-    rounds_of_negotiation: Optional[int] = None
+    loadboard_rate: Optional[str] = None
+    agreed_rate: Optional[str] = None
+    rounds_of_negotiation: Optional[str] = None
     call_outcome: Optional[str] = None
     carrier_sentiment: Optional[str] = None
 
@@ -98,6 +98,13 @@ def search_loads(origin: str = None, equipment_type: str = None):
 # ================================================
 @app.post("/calls", dependencies=[Depends(verify_api_key)])
 def save_call(data: CallData):
+    def to_float(val):
+        try: return float(val)
+        except: return None
+    def to_int(val):
+        try: return int(val)
+        except: return None
+
     db = get_db()
     db.execute("""
         INSERT INTO calls (
@@ -111,9 +118,9 @@ def save_call(data: CallData):
         data.carrier_name,
         data.carrier_eligible,
         data.load_id,
-        data.loadboard_rate,
-        data.agreed_rate,
-        data.rounds_of_negotiation,
+        to_float(data.loadboard_rate),
+        to_float(data.agreed_rate),
+        to_int(data.rounds_of_negotiation),
         data.call_outcome,
         data.carrier_sentiment
     ))
