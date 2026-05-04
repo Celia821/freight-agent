@@ -9,7 +9,10 @@
     "loadboard_rate": 2400,
     "notes": "No touch freight",
     "weight": 42000,
-    "commodity_type": "Electronics"
+    "commodity_type": "Electronics",
+    "num_of_pieces": 320,
+    "miles": 921,
+    "dimensions": "48x40x48 inches"
   },
   {
     "load_id": "LD-002",
@@ -21,7 +24,10 @@
     "loadboard_rate": 1800,
     "notes": "Temperature controlled",
     "weight": 38000,
-    "commodity_type": "Frozen Food"
+    "commodity_type": "Frozen Food",
+    "num_of_pieces": 512,
+    "miles": 662,
+    "dimensions": "48x40x60 inches"
   },
   {
     "load_id": "LD-003",
@@ -33,7 +39,10 @@
     "loadboard_rate": 1200,
     "notes": "Tarps required",
     "weight": 35000,
-    "commodity_type": "Steel Coils"
+    "commodity_type": "Steel Coils",
+    "num_of_pieces": 18,
+    "miles": 372,
+    "dimensions": "96x48x60 inches"
   },
   {
     "load_id": "LD-004",
@@ -45,7 +54,10 @@
     "loadboard_rate": 850,
     "notes": "Drop and hook",
     "weight": 40000,
-    "commodity_type": "Auto Parts"
+    "commodity_type": "Auto Parts",
+    "num_of_pieces": 280,
+    "miles": 239,
+    "dimensions": "48x40x48 inches"
   },
   {
     "load_id": "LD-005",
@@ -57,7 +69,10 @@
     "loadboard_rate": 1100,
     "notes": "Oversized — permit required",
     "weight": 47000,
-    "commodity_type": "Machinery"
+    "commodity_type": "Machinery",
+    "num_of_pieces": 6,
+    "miles": 281,
+    "dimensions": "102x48x72 inches"
   },
   {
     "load_id": "LD-006",
@@ -69,6 +84,9 @@
     "loadboard_rate": 950,
     "notes": "Live load, driver assist required",
     "weight": 36000,
-    "commodity_type": "Fresh Produce"
+    "commodity_type": "Fresh Produce",
+    "num_of_pieces": 440,
+    "miles": 270,
+    "dimensions": "48x40x60 inches"
   }
 ]
