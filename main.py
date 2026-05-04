@@ -73,10 +73,13 @@ async def verify_carrier(mc_number: str):
             resp = await client.get(url)
         if resp.status_code == 200:
             data = resp.json()
+            # FMCSA sometimes returns a list, sometimes a dict
             content = data.get("content", {})
-            if not content:
-                return {"eligible": False, "carrier_name": None, "status": "Not Found"}
+            if isinstance(content, list):
+                content = content[0] if content else {}
             carrier = content.get("carrier", {})
+            if isinstance(carrier, list):
+                carrier = carrier[0] if carrier else {}
             if not carrier:
                 return {"eligible": False, "carrier_name": None, "status": "Not Found"}
             allowed = carrier.get("allowedToOperate", "N")
@@ -85,7 +88,7 @@ async def verify_carrier(mc_number: str):
                 "carrier_name": carrier.get("legalName", "Unknown"),
                 "status": carrier.get("statusCode", "Unknown")
             }
-        return {"eligible": False, "carrier_name": None, "status": f"FMCSA returned {resp.status_code}"}
+        return {"eligible": False, "carrier_name": None, "status": f"FMCSA error {resp.status_code}"}
     except Exception as e:
         return {"eligible": False, "carrier_name": None, "status": f"Error: {str(e)}"}
 
