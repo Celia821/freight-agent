@@ -66,20 +66,28 @@ class CallData(BaseModel):
 # ================================================
 @app.get("/verify-carrier", dependencies=[Depends(verify_api_key)])
 async def verify_carrier(mc_number: str):
-    fmcsa_key = os.environ.get("FMCSA_KEY", "")
-    url = f"https://mobile.fmcsa.dot.gov/qc/services/carriers/docket-number/{mc_number}?webKey={fmcsa_key}"
-    async with httpx.AsyncClient() as client:
-        resp = await client.get(url)
-    if resp.status_code == 200:
-        data = resp.json()
-        carrier = data.get("content", {}).get("carrier", {})
-        allowed = carrier.get("allowedToOperate", "N")
-        return {
-            "eligible": allowed == "Y",
-            "carrier_name": carrier.get("legalName", "Unknown"),
-            "status": carrier.get("statusCode", "Unknown")
-        }
-    return {"eligible": False, "carrier_name": None, "status": "Not Found"}
+    try:
+        fmcsa_key = os.environ.get("FMCSA_KEY", "")
+        url = f"https://mobile.fmcsa.dot.gov/qc/services/carriers/docket-number/{mc_number}?webKey={fmcsa_key}"
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            resp = await client.get(url)
+        if resp.status_code == 200:
+            data = resp.json()
+            content = data.get("content", {})
+            if not content:
+                return {"eligible": False, "carrier_name": None, "status": "Not Found"}
+            carrier = content.get("carrier", {})
+            if not carrier:
+                return {"eligible": False, "carrier_name": None, "status": "Not Found"}
+            allowed = carrier.get("allowedToOperate", "N")
+            return {
+                "eligible": allowed == "Y",
+                "carrier_name": carrier.get("legalName", "Unknown"),
+                "status": carrier.get("statusCode", "Unknown")
+            }
+        return {"eligible": False, "carrier_name": None, "status": f"FMCSA returned {resp.status_code}"}
+    except Exception as e:
+        return {"eligible": False, "carrier_name": None, "status": f"Error: {str(e)}"}
 
 # ================================================
 # ENDPOINT 2: Search loads (called by HappyRobot)
