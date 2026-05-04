@@ -22,106 +22,165 @@
     --blue-dim: rgba(59,130,246,0.12);
     --purple: #a855f7;
     --purple-dim: rgba(168,85,247,0.12);
+    --teal: #14b8a6;
+    --teal-dim: rgba(20,184,166,0.12);
     --text: #e8eaf0;
     --muted: #6b7280;
     --mono: 'DM Mono', monospace;
     --sans: 'DM Sans', sans-serif;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:var(--sans); min-height:100vh; }
 
+  /* HEADER */
   header {
-    border-bottom: 1px solid var(--border);
-    padding: 0 32px;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 56px; position: sticky; top: 0; background: var(--bg); z-index: 100;
+    border-bottom:1px solid var(--border);
+    padding:0 32px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:56px; position:sticky; top:0; background:var(--bg); z-index:100;
   }
-  .logo-text { font-family: var(--mono); font-size: 12px; color: var(--amber); letter-spacing: 2px; text-transform: uppercase; }
-  .header-right { display: flex; align-items: center; gap: 16px; }
-  .filter-tabs { display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-  .filter-tabs button { background: none; border: none; color: var(--muted); font-family: var(--sans); font-size: 12px; font-weight: 500; padding: 6px 14px; cursor: pointer; transition: all 0.15s; }
-  .filter-tabs button.active { background: var(--amber); color: #000; }
-  .last-updated { font-family: var(--mono); font-size: 11px; color: var(--muted); }
-  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; margin-right: 6px; animation: pulse 2s infinite; }
+  .logo-text { font-family:var(--mono); font-size:12px; color:var(--amber); letter-spacing:2px; text-transform:uppercase; }
+  .header-right { display:flex; align-items:center; gap:16px; }
+  .filter-tabs { display:flex; background:var(--surface); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .filter-tabs button { background:none; border:none; color:var(--muted); font-family:var(--sans); font-size:12px; font-weight:500; padding:6px 14px; cursor:pointer; transition:all 0.15s; }
+  .filter-tabs button.active { background:var(--amber); color:#000; }
+  .last-updated { font-family:var(--mono); font-size:11px; color:var(--muted); display:flex; align-items:center; gap:6px; }
+  .live-dot { width:6px; height:6px; border-radius:50%; background:var(--green); display:inline-block; animation:pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-  .page { max-width: 1280px; margin: 0 auto; padding: 28px 32px; }
-  .section-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; margin-top: 32px; }
-  .section-label:first-child { margin-top: 0; }
+  /* LAYOUT */
+  .page { max-width:1280px; margin:0 auto; padding:28px 32px; }
+  .section-label { font-family:var(--mono); font-size:10px; color:var(--muted); letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; margin-top:32px; }
+  .section-label:first-child { margin-top:0; }
 
-  .kpi-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
-  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; position: relative; overflow: hidden; }
-  .kpi::before { content:''; position: absolute; top:0; left:0; right:0; height:2px; }
-  .kpi.amber::before { background: var(--amber); }
-  .kpi.green::before { background: var(--green); }
-  .kpi.red::before   { background: var(--red); }
-  .kpi.blue::before  { background: var(--blue); }
-  .kpi.purple::before{ background: var(--purple); }
-  .kpi-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-  .kpi-value { font-family: var(--mono); font-size: 28px; font-weight: 500; line-height: 1; margin-bottom: 6px; }
-  .kpi.amber .kpi-value  { color: var(--amber); }
-  .kpi.green .kpi-value  { color: var(--green); }
-  .kpi.red .kpi-value    { color: var(--red); }
-  .kpi.blue .kpi-value   { color: var(--blue); }
-  .kpi.purple .kpi-value { color: var(--purple); }
-  .kpi-sub { font-size: 11px; color: var(--muted); }
-
-  .kpi2-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-  .kpi2 { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
-  .kpi2-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-  .kpi2-icon.amber  { background: var(--amber-dim); }
-  .kpi2-icon.green  { background: var(--green-dim); }
-  .kpi2-icon.blue   { background: var(--blue-dim); }
-  .kpi2-icon.purple { background: var(--purple-dim); }
-  .kpi2-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
-  .kpi2-value { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--text); }
-
-  .charts-grid { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 12px; }
-  .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
-  .chart-title { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-  .chart-sub { font-size: 11px; color: var(--muted); margin-bottom: 16px; }
-  .chart-wrap { position: relative; height: 180px; display: flex; align-items: center; justify-content: center; }
-
-  .funnel { display: flex; flex-direction: column; gap: 8px; }
-  .funnel-row { display: flex; align-items: center; gap: 10px; }
-  .funnel-label { font-size: 11px; color: var(--muted); width: 100px; flex-shrink: 0; text-align: right; }
-  .funnel-bar-wrap { flex: 1; height: 24px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
-  .funnel-bar { height: 100%; border-radius: 4px; transition: width 0.8s ease; display: flex; align-items: center; padding-left: 8px; min-width: 28px; }
-  .funnel-bar span { font-family: var(--mono); font-size: 11px; color: #000; font-weight: 500; }
-  .funnel-pct { font-family: var(--mono); font-size: 11px; color: var(--muted); width: 36px; flex-shrink: 0; }
-
-  .table-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-  .table-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-  .table-title { font-size: 13px; font-weight: 600; }
-  .table-count { font-family: var(--mono); font-size: 11px; color: var(--muted); }
-  .table-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  th { text-align: left; padding: 10px 16px; color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); white-space: nowrap; }
-  td { padding: 11px 16px; border-bottom: 1px solid var(--border); color: var(--text); font-size: 12px; white-space: nowrap; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: var(--surface2); }
-  .mono { font-family: var(--mono); }
-
-  .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; font-family: var(--mono); }
-  .badge.booked        { background: var(--green-dim);  color: var(--green); }
-  .badge.no_deal       { background: var(--red-dim);    color: var(--red); }
-  .badge.ineligible    { background: var(--amber-dim);  color: var(--amber); }
-  .badge.no_load_match { background: var(--blue-dim);   color: var(--blue); }
-  .badge.positive      { background: var(--green-dim);  color: var(--green); }
-  .badge.neutral       { background: rgba(107,114,128,0.15); color: var(--muted); }
-  .badge.negative      { background: var(--red-dim);    color: var(--red); }
-  .empty-row td { text-align: center; padding: 48px; color: var(--muted); font-size: 13px; }
-
-  @media (max-width: 1024px) {
-    .kpi-grid { grid-template-columns: repeat(3,1fr); }
-    .kpi2-grid { grid-template-columns: repeat(2,1fr); }
-    .charts-grid { grid-template-columns: 1fr 1fr; }
+  /* TOOLTIP */
+  .tip-wrap { position:relative; display:inline-flex; align-items:center; }
+  .tip-icon { display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; border-radius:50%; background:var(--surface2); border:1px solid var(--border); color:var(--muted); font-size:9px; cursor:default; margin-left:6px; flex-shrink:0; }
+  .tip-box {
+    display:none; position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%);
+    background:#1e2130; border:1px solid var(--border); border-radius:8px; padding:12px 14px;
+    width:240px; z-index:200; pointer-events:none;
   }
-  @media (max-width: 640px) {
-    .page { padding: 16px; } header { padding: 0 16px; }
-    .kpi-grid { grid-template-columns: repeat(2,1fr); }
-    .kpi2-grid { grid-template-columns: 1fr; }
-    .charts-grid { grid-template-columns: 1fr; }
+  .tip-box::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-top-color:#1e2130; }
+  .tip-wrap:hover .tip-box { display:block; }
+  .tip-title { font-size:12px; font-weight:600; color:var(--text); margin-bottom:6px; }
+  .tip-body { font-size:11px; color:var(--muted); line-height:1.5; }
+  .tip-formula { font-family:var(--mono); font-size:10px; color:var(--amber); margin-top:6px; }
+  .tip-bench { font-size:10px; color:var(--green); margin-top:4px; }
+
+  /* HERO REVENUE */
+  .hero-card {
+    background:linear-gradient(135deg,rgba(245,166,35,0.08) 0%,rgba(245,166,35,0.02) 100%);
+    border:1px solid rgba(245,166,35,0.3);
+    border-radius:12px; padding:24px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:12px;
+  }
+  .hero-left .label { font-size:11px; color:var(--amber); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
+  .hero-left .value { font-family:var(--mono); font-size:48px; font-weight:500; color:var(--amber); line-height:1; }
+  .hero-left .sub { font-size:12px; color:var(--muted); margin-top:6px; }
+  .hero-right { display:flex; gap:32px; }
+  .hero-stat .label { font-size:11px; color:var(--muted); margin-bottom:4px; }
+  .hero-stat .value { font-family:var(--mono); font-size:20px; color:var(--text); }
+
+  /* KPI GRID */
+  .kpi-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+  .kpi { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 20px; position:relative; overflow:hidden; }
+  .kpi::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+  .kpi.green::before  { background:var(--green); }
+  .kpi.red::before    { background:var(--red); }
+  .kpi.blue::before   { background:var(--blue); }
+  .kpi.purple::before { background:var(--purple); }
+  .kpi.teal::before   { background:var(--teal); }
+  .kpi-label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; display:flex; align-items:center; }
+  .kpi-value { font-family:var(--mono); font-size:28px; font-weight:500; line-height:1; margin-bottom:6px; }
+  .kpi.green .kpi-value  { color:var(--green); }
+  .kpi.red .kpi-value    { color:var(--red); }
+  .kpi.blue .kpi-value   { color:var(--blue); }
+  .kpi.purple .kpi-value { color:var(--purple); }
+  .kpi.teal .kpi-value   { color:var(--teal); }
+  .kpi-sub { font-size:11px; color:var(--muted); }
+
+  /* KPI2 */
+  .kpi2-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .kpi2 { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 20px; display:flex; align-items:center; gap:14px; }
+  .kpi2-icon { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .kpi2-icon.amber  { background:var(--amber-dim); }
+  .kpi2-icon.green  { background:var(--green-dim); }
+  .kpi2-icon.blue   { background:var(--blue-dim); }
+  .kpi2-icon.purple { background:var(--purple-dim); }
+  .kpi2-icon.teal   { background:var(--teal-dim); }
+  .kpi2-body { flex:1; min-width:0; }
+  .kpi2-label { font-size:11px; color:var(--muted); margin-bottom:4px; display:flex; align-items:center; }
+  .kpi2-value { font-family:var(--mono); font-size:18px; font-weight:500; color:var(--text); }
+
+  /* CHARTS */
+  .charts-grid { display:grid; grid-template-columns:1fr 1fr 1.2fr; gap:12px; }
+  .chart-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; }
+  .chart-title { font-size:12px; font-weight:600; color:var(--text); margin-bottom:4px; }
+  .chart-sub { font-size:11px; color:var(--muted); margin-bottom:16px; }
+  .chart-wrap { position:relative; height:180px; display:flex; align-items:center; justify-content:center; }
+
+  /* FUNNEL */
+  .funnel { display:flex; flex-direction:column; gap:8px; }
+  .funnel-row { display:flex; align-items:center; gap:10px; }
+  .funnel-label { font-size:11px; color:var(--muted); width:100px; flex-shrink:0; text-align:right; }
+  .funnel-bar-wrap { flex:1; height:24px; background:var(--surface2); border-radius:4px; overflow:hidden; }
+  .funnel-bar { height:100%; border-radius:4px; transition:width 0.8s ease; display:flex; align-items:center; padding-left:8px; min-width:28px; }
+  .funnel-bar span { font-family:var(--mono); font-size:11px; color:#000; font-weight:500; }
+  .funnel-pct { font-family:var(--mono); font-size:11px; color:var(--muted); width:36px; flex-shrink:0; }
+  .funnel-note { font-size:10px; color:var(--muted); margin-top:12px; font-style:italic; }
+
+  /* GLOSSARY */
+  .glossary-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .glossary-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 18px; }
+  .glossary-name { font-size:12px; font-weight:600; color:var(--text); margin-bottom:6px; }
+  .glossary-desc { font-size:11px; color:var(--muted); line-height:1.6; margin-bottom:8px; }
+  .glossary-formula { font-family:var(--mono); font-size:10px; color:var(--amber); }
+  .glossary-bench { font-size:10px; color:var(--green); margin-top:4px; }
+  .glossary-dir { font-size:10px; margin-top:4px; }
+  .glossary-dir.higher { color:var(--green); }
+  .glossary-dir.lower  { color:var(--red); }
+
+  /* TABLE */
+  .table-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+  .table-header { padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+  .table-title { font-size:13px; font-weight:600; }
+  .table-count { font-family:var(--mono); font-size:11px; color:var(--muted); }
+  .table-wrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th { text-align:left; padding:10px 16px; color:var(--muted); font-weight:500; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; border-bottom:1px solid var(--border); white-space:nowrap; }
+  td { padding:11px 16px; border-bottom:1px solid var(--border); color:var(--text); font-size:12px; white-space:nowrap; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:var(--surface2); }
+  .mono { font-family:var(--mono); }
+
+  .badge { display:inline-flex; align-items:center; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:500; font-family:var(--mono); white-space:nowrap; }
+  .badge.booked        { background:var(--green-dim);  color:var(--green); }
+  .badge.no_deal       { background:var(--red-dim);    color:var(--red); }
+  .badge.ineligible    { background:var(--amber-dim);  color:var(--amber); }
+  .badge.no_load_match { background:var(--blue-dim);   color:var(--blue); }
+  .badge.positive      { background:var(--green-dim);  color:var(--green); }
+  .badge.neutral       { background:rgba(107,114,128,0.15); color:var(--muted); }
+  .badge.negative      { background:var(--red-dim);    color:var(--red); }
+  .empty-row td { text-align:center; padding:48px; color:var(--muted); font-size:13px; }
+
+  /* ALERT BANNER */
+  .alert { background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25); border-radius:8px; padding:10px 16px; font-size:12px; color:var(--red); margin-bottom:12px; display:none; }
+
+  @media(max-width:1024px){
+    .kpi-grid{grid-template-columns:repeat(3,1fr);}
+    .kpi2-grid{grid-template-columns:repeat(2,1fr);}
+    .charts-grid{grid-template-columns:1fr 1fr;}
+    .glossary-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media(max-width:640px){
+    .page{padding:16px;} header{padding:0 16px;}
+    .kpi-grid{grid-template-columns:repeat(2,1fr);}
+    .kpi2-grid{grid-template-columns:1fr;}
+    .charts-grid{grid-template-columns:1fr;}
+    .glossary-grid{grid-template-columns:1fr;}
+    .hero-right{display:none;}
   }
 </style>
 </head>
@@ -143,67 +202,197 @@
 
 <div class="page">
 
-  <div class="section-label">Agent Performance Overview</div>
+  <!-- ALERT BANNER -->
+  <div class="alert" id="alertBanner"></div>
+
+  <!-- HERO REVENUE -->
+  <div class="section-label">Revenue Overview</div>
+  <div class="hero-card">
+    <div class="hero-left">
+      <div class="label">💵 Total Revenue Booked</div>
+      <div class="value" id="hRevenue">—</div>
+      <div class="sub" id="hRevenueSub">Sum of all agreed rates on booked loads</div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat">
+        <div class="label">Loads Booked</div>
+        <div class="value" id="hLoadsBooked">—</div>
+      </div>
+      <div class="hero-stat">
+        <div class="label">Avg Per Load</div>
+        <div class="value" id="hAvgPerLoad">—</div>
+      </div>
+      <div class="hero-stat">
+        <div class="label">Calls Handled</div>
+        <div class="value" id="hTotalCalls">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: AGENT PERFORMANCE -->
+  <div class="section-label">Agent Performance</div>
   <div class="kpi-grid">
-    <div class="kpi amber">
-      <div class="kpi-label">Total Calls</div>
-      <div class="kpi-value" id="kTotalCalls">—</div>
-      <div class="kpi-sub">Handled by AI agent</div>
-    </div>
+
     <div class="kpi green">
-      <div class="kpi-label">Booking Rate</div>
+      <div class="kpi-label">
+        Booking Rate
+        <div class="tip-wrap"><span class="tip-icon">i</span>
+          <div class="tip-box">
+            <div class="tip-title">Booking Rate</div>
+            <div class="tip-body">Percentage of all inbound calls that resulted in a confirmed load booking.</div>
+            <div class="tip-formula">= booked calls ÷ total calls</div>
+            <div class="tip-bench">↑ Higher is better. Target: 40–60%</div>
+          </div>
+        </div>
+      </div>
       <div class="kpi-value" id="kBookingRate">—</div>
-      <div class="kpi-sub">Calls → booked loads</div>
+      <div class="kpi-sub">Calls that became loads</div>
     </div>
+
+    <div class="kpi teal">
+      <div class="kpi-label">
+        Negotiation Win Rate
+        <div class="tip-wrap"><span class="tip-icon">i</span>
+          <div class="tip-box">
+            <div class="tip-title">Negotiation Win Rate</div>
+            <div class="tip-body">Of calls that actually reached the negotiation stage, how many closed successfully. Excludes ineligible and no-load-match calls.</div>
+            <div class="tip-formula">= booked ÷ (booked + no deal)</div>
+            <div class="tip-bench">↑ Higher is better. Target: 60%+</div>
+          </div>
+        </div>
+      </div>
+      <div class="kpi-value" id="kNegWinRate">—</div>
+      <div class="kpi-sub">When we negotiate, we close</div>
+    </div>
+
     <div class="kpi red">
-      <div class="kpi-label">Ineligible Rate</div>
+      <div class="kpi-label">
+        Ineligible Rate
+        <div class="tip-wrap"><span class="tip-icon">i</span>
+          <div class="tip-box">
+            <div class="tip-title">Ineligible Rate</div>
+            <div class="tip-body">Carriers that failed FMCSA authority verification. High values indicate poor lead quality or bad actors attempting to book.</div>
+            <div class="tip-formula">= ineligible calls ÷ total calls</div>
+            <div class="tip-bench">↓ Lower is better. Target: &lt;15%</div>
+          </div>
+        </div>
+      </div>
       <div class="kpi-value" id="kIneligibleRate">—</div>
       <div class="kpi-sub">Failed MC verification</div>
     </div>
+
     <div class="kpi blue">
-      <div class="kpi-label">No Load Match</div>
+      <div class="kpi-label">
+        No Load Match
+        <div class="tip-wrap"><span class="tip-icon">i</span>
+          <div class="tip-box">
+            <div class="tip-title">No Load Match Rate</div>
+            <div class="tip-body">Eligible carriers who called in but had no available load matching their lane or equipment. High values signal an inventory gap — ops needs more loads in those lanes.</div>
+            <div class="tip-formula">= no match calls ÷ eligible calls</div>
+            <div class="tip-bench">↓ Lower is better. Target: &lt;20%</div>
+          </div>
+        </div>
+      </div>
       <div class="kpi-value" id="kNoLoadRate">—</div>
       <div class="kpi-sub">Inventory gap indicator</div>
     </div>
+
     <div class="kpi purple">
-      <div class="kpi-label">Positive Sentiment</div>
+      <div class="kpi-label">
+        Positive Sentiment
+        <div class="tip-wrap"><span class="tip-icon">i</span>
+          <div class="tip-box">
+            <div class="tip-title">Positive Sentiment Rate</div>
+            <div class="tip-body">Carriers who had a positive experience on the call. Carriers with positive sentiment are more likely to call back. Low values may indicate the agent needs prompt adjustments.</div>
+            <div class="tip-formula">= positive calls ÷ total calls</div>
+            <div class="tip-bench">↑ Higher is better. Target: 70%+</div>
+          </div>
+        </div>
+      </div>
       <div class="kpi-value" id="kSentimentPos">—</div>
-      <div class="kpi-sub">Of all carrier calls</div>
+      <div class="kpi-sub">Carriers likely to call back</div>
     </div>
+
   </div>
 
+  <!-- SECTION 2: NEGOTIATION -->
   <div class="section-label">Negotiation Effectiveness — Booked & No Deal Calls Only</div>
   <div class="kpi2-grid">
+
     <div class="kpi2">
       <div class="kpi2-icon amber">💰</div>
       <div class="kpi2-body">
-        <div class="kpi2-label">Avg Agreed Rate</div>
+        <div class="kpi2-label">
+          Avg Agreed Rate
+          <div class="tip-wrap"><span class="tip-icon">i</span>
+            <div class="tip-box">
+              <div class="tip-title">Average Agreed Rate</div>
+              <div class="tip-body">The average dollar amount agreed with carriers on booked loads only. No-deal calls excluded as no rate was confirmed.</div>
+              <div class="tip-formula">= sum of agreed rates ÷ booked calls</div>
+            </div>
+          </div>
+        </div>
         <div class="kpi2-value" id="kAvgAgreed">—</div>
       </div>
     </div>
+
     <div class="kpi2">
-      <div class="kpi2-icon green">📈</div>
+      <div class="kpi2-icon" id="rateDiffIcon" style="background:var(--green-dim)">📊</div>
       <div class="kpi2-body">
-        <div class="kpi2-label">Avg Rate vs Loadboard</div>
+        <div class="kpi2-label">
+          Rate vs Loadboard
+          <div class="tip-wrap"><span class="tip-icon">i</span>
+            <div class="tip-box">
+              <div class="tip-title">Rate vs Loadboard</div>
+              <div class="tip-body">How much above or below the listed loadboard rate we are agreeing to pay. Negative means we paid less — better margin protection. Positive means we overpaid.</div>
+              <div class="tip-formula">= (agreed - loadboard) ÷ loadboard × 100</div>
+              <div class="tip-bench">↓ Lower or negative is better. Target: ≤0%</div>
+            </div>
+          </div>
+        </div>
         <div class="kpi2-value" id="kRateDiff">—</div>
       </div>
     </div>
+
     <div class="kpi2">
       <div class="kpi2-icon blue">🔄</div>
       <div class="kpi2-body">
-        <div class="kpi2-label">Avg Negotiation Rounds</div>
+        <div class="kpi2-label">
+          Avg Rounds
+          <div class="tip-wrap"><span class="tip-icon">i</span>
+            <div class="tip-box">
+              <div class="tip-title">Average Negotiation Rounds</div>
+              <div class="tip-body">Average number of counter-offers before a call closed (either booked or no-deal). Lower means carriers are accepting earlier — the AI is more persuasive.</div>
+              <div class="tip-formula">= total rounds ÷ negotiated calls</div>
+              <div class="tip-bench">↓ Lower is better. Target: &lt;1.5</div>
+            </div>
+          </div>
+        </div>
         <div class="kpi2-value" id="kAvgRounds">—</div>
       </div>
     </div>
+
     <div class="kpi2">
       <div class="kpi2-icon purple">⚡</div>
       <div class="kpi2-body">
-        <div class="kpi2-label">First Offer Accepted</div>
+        <div class="kpi2-label">
+          Closed on 1st Offer
+          <div class="tip-wrap"><span class="tip-icon">i</span>
+            <div class="tip-box">
+              <div class="tip-title">Closed on First Offer</div>
+              <div class="tip-body">Of all booked loads, how many were accepted immediately on the first offer with no negotiation. Higher means the AI's opening rates are well-calibrated.</div>
+              <div class="tip-formula">= zero-round bookings ÷ total booked</div>
+              <div class="tip-bench">↑ Higher is better. Target: 40%+</div>
+            </div>
+          </div>
+        </div>
         <div class="kpi2-value" id="kFirstOffer">—</div>
       </div>
     </div>
+
   </div>
 
+  <!-- SECTION 3: CHARTS -->
   <div class="section-label">Breakdown & Funnel</div>
   <div class="charts-grid">
     <div class="chart-card">
@@ -218,11 +407,58 @@
     </div>
     <div class="chart-card">
       <div class="chart-title">Conversion Funnel</div>
-      <div class="chart-sub">Where calls drop off</div>
+      <div class="chart-sub">Where calls drop off — each step is a subset of the previous</div>
       <div class="funnel" id="funnelChart"></div>
     </div>
   </div>
 
+  <!-- SECTION 4: KPI GLOSSARY -->
+  <div class="section-label">KPI Reference — How Each Metric Is Calculated</div>
+  <div class="glossary-grid">
+    <div class="glossary-card">
+      <div class="glossary-name">💵 Total Revenue Booked</div>
+      <div class="glossary-desc">Sum of all agreed rates on successfully booked loads. The primary business output of the AI agent.</div>
+      <div class="glossary-formula">Σ agreed_rate where outcome = booked</div>
+      <div class="glossary-dir higher">↑ Higher is always better</div>
+    </div>
+    <div class="glossary-card">
+      <div class="glossary-name">📈 Booking Rate</div>
+      <div class="glossary-desc">Overall conversion rate. Includes all call types — ineligible carriers lower this rate even though they were correctly rejected.</div>
+      <div class="glossary-formula">booked ÷ total calls × 100</div>
+      <div class="glossary-bench">Industry target: 40–60%</div>
+      <div class="glossary-dir higher">↑ Higher is better</div>
+    </div>
+    <div class="glossary-card">
+      <div class="glossary-name">🎯 Negotiation Win Rate</div>
+      <div class="glossary-desc">Closes the loop on agent persuasiveness. Only counts calls that actually reached negotiation — removes ineligible and no-match noise.</div>
+      <div class="glossary-formula">booked ÷ (booked + no_deal) × 100</div>
+      <div class="glossary-bench">Target: 60%+</div>
+      <div class="glossary-dir higher">↑ Higher is better</div>
+    </div>
+    <div class="glossary-card">
+      <div class="glossary-name">🚫 Ineligible Rate</div>
+      <div class="glossary-desc">Carriers rejected by FMCSA verification. High values are a lead quality problem — not an AI problem. Ops should review inbound carrier sources.</div>
+      <div class="glossary-formula">ineligible ÷ total calls × 100</div>
+      <div class="glossary-bench">Target: &lt;15%</div>
+      <div class="glossary-dir lower">↓ Lower is better</div>
+    </div>
+    <div class="glossary-card">
+      <div class="glossary-name">📦 No Load Match Rate</div>
+      <div class="glossary-desc">Eligible carriers turned away because no load matched their equipment or lane. Signals inventory gaps — ops should add more loads in those corridors.</div>
+      <div class="glossary-formula">no_load_match ÷ eligible calls × 100</div>
+      <div class="glossary-bench">Target: &lt;20%</div>
+      <div class="glossary-dir lower">↓ Lower is better</div>
+    </div>
+    <div class="glossary-card">
+      <div class="glossary-name">📊 Rate vs Loadboard</div>
+      <div class="glossary-desc">Measures margin protection. Negative means we paid less than listed — better for the brokerage. Positive means we overpaid to close the deal.</div>
+      <div class="glossary-formula">(agreed - loadboard) ÷ loadboard × 100</div>
+      <div class="glossary-bench">Target: ≤0% (pay at or below board)</div>
+      <div class="glossary-dir lower">↓ Lower or negative is better</div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: CALL LOG -->
   <div class="section-label">Call Log</div>
   <div class="table-card">
     <div class="table-header">
@@ -235,7 +471,7 @@
           <tr>
             <th>Date & Time</th>
             <th>MC Number</th>
-            <th>Carrier</th>
+            <th>Carrier Name</th>
             <th>Load ID</th>
             <th>Loadboard Rate</th>
             <th>Agreed Rate</th>
@@ -252,7 +488,7 @@
     </div>
   </div>
 
-</div>
+</div><!-- /page -->
 
 <script>
 const API_KEY = "freight-secret-2025";
@@ -267,10 +503,15 @@ function setFilter(f, btn) {
   load();
 }
 
+// FIX: compare dates in local timezone regardless of UTC storage
 function isToday(dateStr) {
   if (!dateStr) return false;
-  const d = new Date(dateStr), now = new Date();
-  return d.getFullYear()===now.getFullYear() && d.getMonth()===now.getMonth() && d.getDate()===now.getDate();
+  // Append Z if missing so JS parses as UTC correctly
+  const utc = dateStr.includes('Z') || dateStr.includes('+') ? dateStr : dateStr + 'Z';
+  const d   = new Date(utc);
+  const now = new Date();
+  // Compare local date strings
+  return d.toLocaleDateString() === now.toLocaleDateString();
 }
 
 async function fetchCalls() {
@@ -282,42 +523,92 @@ async function fetchCalls() {
 }
 
 const pct   = (n,t) => t ? Math.round(n/t*100)+"%" : "0%";
-const money = v => (v!=null && v!=="" && !isNaN(v) && Number(v)>0)
+const money = v => (v!=null&&v!==""&&!isNaN(v)&&Number(v)>0)
   ? "$"+Number(v).toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:0}) : "—";
 const num   = v => { const n=parseFloat(v); return isNaN(n)?null:n; };
 const badge = v => v ? `<span class="badge ${v}">${v.replace(/_/g," ")}</span>` : "—";
 
+function checkAlerts(calls) {
+  const banner = document.getElementById("alertBanner");
+  const alerts = [];
+  const total  = calls.length;
+  if (!total) { banner.style.display="none"; return; }
+
+  const ineligPct = calls.filter(c=>c.call_outcome==="ineligible").length / total;
+  if (ineligPct > 0.3) alerts.push("⚠️ Ineligible rate above 30% — review inbound carrier lead sources.");
+
+  const noLoadEligible = calls.filter(c=>c.carrier_eligible==="true"||c.carrier_eligible===true);
+  const noLoadPct = noLoadEligible.length
+    ? calls.filter(c=>c.call_outcome==="no_load_match").length / noLoadEligible.length : 0;
+  if (noLoadPct > 0.4) alerts.push("⚠️ No load match rate above 40% — ops should add loads in high-demand lanes.");
+
+  const diffs = calls.filter(c=>c.call_outcome==="booked"&&num(c.agreed_rate)&&num(c.loadboard_rate))
+    .map(c=>((num(c.agreed_rate)-num(c.loadboard_rate))/num(c.loadboard_rate))*100);
+  const avgDiff = diffs.length ? diffs.reduce((a,b)=>a+b,0)/diffs.length : 0;
+  if (avgDiff > 5) alerts.push("⚠️ Avg agreed rate is "+avgDiff.toFixed(1)+"% above loadboard — agent may be over-conceding on price.");
+
+  if (alerts.length) {
+    banner.innerHTML = alerts.join("&nbsp;&nbsp;|&nbsp;&nbsp;");
+    banner.style.display = "block";
+  } else {
+    banner.style.display = "none";
+  }
+}
+
+function renderHero(calls) {
+  const booked = calls.filter(c=>c.call_outcome==="booked");
+  const rates  = booked.map(c=>num(c.agreed_rate)).filter(v=>v!==null&&v>0);
+  const total  = rates.reduce((a,b)=>a+b,0);
+  const avg    = rates.length ? total/rates.length : null;
+
+  document.getElementById("hRevenue").textContent    = total ? money(total) : "$0";
+  document.getElementById("hLoadsBooked").textContent= booked.length || "0";
+  document.getElementById("hAvgPerLoad").textContent = avg ? money(avg) : "—";
+  document.getElementById("hTotalCalls").textContent = calls.length || "0";
+}
+
 function renderKPIs(calls) {
   const total      = calls.length;
-  const booked     = calls.filter(c => c.call_outcome==="booked");
-  const noLoad     = calls.filter(c => c.call_outcome==="no_load_match");
-  const ineligible = calls.filter(c => c.call_outcome==="ineligible");
-  const positive   = calls.filter(c => c.carrier_sentiment==="positive");
+  const booked     = calls.filter(c=>c.call_outcome==="booked");
+  const noLoad     = calls.filter(c=>c.call_outcome==="no_load_match");
+  const ineligible = calls.filter(c=>c.call_outcome==="ineligible");
+  const eligible   = calls.filter(c=>c.carrier_eligible==="true"||c.carrier_eligible===true);
+  const positive   = calls.filter(c=>c.carrier_sentiment==="positive");
+  const negotiated = calls.filter(c=>c.call_outcome==="booked"||c.call_outcome==="no_deal");
 
-  document.getElementById("kTotalCalls").textContent     = total||"0";
   document.getElementById("kBookingRate").textContent    = pct(booked.length,total);
+  document.getElementById("kNegWinRate").textContent     = pct(booked.length, booked.length+calls.filter(c=>c.call_outcome==="no_deal").length);
   document.getElementById("kIneligibleRate").textContent = pct(ineligible.length,total);
-  document.getElementById("kNoLoadRate").textContent     = pct(noLoad.length,total);
+  document.getElementById("kNoLoadRate").textContent     = eligible.length ? pct(noLoad.length,eligible.length) : "0%";
   document.getElementById("kSentimentPos").textContent   = pct(positive.length,total);
 
-  const negotiated = calls.filter(c => c.call_outcome==="booked"||c.call_outcome==="no_deal");
-
+  // Negotiation section
   const agreedRates = booked.map(c=>num(c.agreed_rate)).filter(v=>v!==null&&v>0);
   const avgAgreed   = agreedRates.length ? agreedRates.reduce((a,b)=>a+b,0)/agreedRates.length : null;
 
-  const diffs   = booked.filter(c=>num(c.agreed_rate)&&num(c.loadboard_rate))
-                        .map(c=>((num(c.agreed_rate)-num(c.loadboard_rate))/num(c.loadboard_rate))*100);
+  const diffs = booked.filter(c=>num(c.agreed_rate)&&num(c.loadboard_rate))
+    .map(c=>((num(c.agreed_rate)-num(c.loadboard_rate))/num(c.loadboard_rate))*100);
   const avgDiff = diffs.length ? diffs.reduce((a,b)=>a+b,0)/diffs.length : null;
 
   const rounds    = negotiated.map(c=>num(c.rounds_of_negotiation)).filter(v=>v!==null);
   const avgRounds = rounds.length ? rounds.reduce((a,b)=>a+b,0)/rounds.length : null;
+  const firstOffer= booked.filter(c=>num(c.rounds_of_negotiation)===0).length;
 
-  const firstOffer = booked.filter(c=>num(c.rounds_of_negotiation)===0).length;
+  document.getElementById("kAvgAgreed").textContent = avgAgreed ? money(avgAgreed) : "—";
 
-  document.getElementById("kAvgAgreed").textContent  = avgAgreed ? money(avgAgreed) : "—";
-  document.getElementById("kRateDiff").textContent   = avgDiff!==null ? (avgDiff>=0?"+":"")+avgDiff.toFixed(1)+"% vs board" : "—";
+  // Rate diff — RED if positive (overpaying), GREEN if negative (saving)
+  const icon = document.getElementById("rateDiffIcon");
+  if (avgDiff !== null) {
+    const isOver = avgDiff > 0;
+    document.getElementById("kRateDiff").textContent = (avgDiff>=0?"+":"")+avgDiff.toFixed(1)+"% vs board";
+    document.getElementById("kRateDiff").style.color = isOver ? "var(--red)" : "var(--green)";
+    icon.style.background = isOver ? "var(--red-dim)" : "var(--green-dim)";
+  } else {
+    document.getElementById("kRateDiff").textContent = "—";
+  }
+
   document.getElementById("kAvgRounds").textContent  = avgRounds!==null ? avgRounds.toFixed(1)+" rounds" : "—";
-  document.getElementById("kFirstOffer").textContent = booked.length ? pct(firstOffer,booked.length)+" of booked" : "—";
+  document.getElementById("kFirstOffer").textContent  = booked.length ? pct(firstOffer,booked.length)+" of booked" : "—";
 }
 
 function renderCharts(calls) {
@@ -338,8 +629,8 @@ function renderCharts(calls) {
     options:{ cutout:"68%", plugins:{ legend:{ position:"bottom", labels:{color:"#6b7280",font:{size:11},padding:12,boxWidth:10} } } }
   });
 
-  outcomeC   = donut("outcomeChart",  ["Booked","No Deal","Ineligible","No Load"],Object.values(oc),["#22c55e","#ef4444","#f5a623","#3b82f6"]);
-  sentimentC = donut("sentimentChart",["Positive","Neutral","Negative"],           Object.values(sc),["#22c55e","#6b7280","#ef4444"]);
+  outcomeC   = donut("outcomeChart",["Booked","No Deal","Ineligible","No Load"],Object.values(oc),["#22c55e","#ef4444","#f5a623","#3b82f6"]);
+  sentimentC = donut("sentimentChart",["Positive","Neutral","Negative"],Object.values(sc),["#22c55e","#6b7280","#ef4444"]);
 
   const eligible   = calls.filter(c=>c.carrier_eligible==="true"||c.carrier_eligible===true);
   const loadFound  = eligible.filter(c=>c.call_outcome!=="no_load_match");
@@ -354,23 +645,26 @@ function renderCharts(calls) {
     {label:"Booked",      n:bookedC.length,    color:"#22c55e"},
   ];
 
-  document.getElementById("funnelChart").innerHTML = steps.map(s=>{
-    const w = total ? Math.max((s.n/total)*100,4) : 0;
-    return `<div class="funnel-row">
-      <div class="funnel-label">${s.label}</div>
-      <div class="funnel-bar-wrap">
-        <div class="funnel-bar" style="width:${w}%;background:${s.color}"><span>${s.n}</span></div>
-      </div>
-      <div class="funnel-pct">${pct(s.n,total)}</div>
-    </div>`;
-  }).join("");
+  const dropped = total - bookedC.length;
+  document.getElementById("funnelChart").innerHTML =
+    steps.map(s=>{
+      const w = total ? Math.max((s.n/total)*100,4) : 0;
+      return `<div class="funnel-row">
+        <div class="funnel-label">${s.label}</div>
+        <div class="funnel-bar-wrap">
+          <div class="funnel-bar" style="width:${w}%;background:${s.color}"><span>${s.n}</span></div>
+        </div>
+        <div class="funnel-pct">${pct(s.n,total)}</div>
+      </div>`;
+    }).join("") +
+    (total ? `<div class="funnel-note">${dropped} call${dropped!==1?"s":""} did not result in a booking this period.</div>` : "");
 }
 
 function renderTable(calls) {
   document.getElementById("tableCount").textContent = `${calls.length} calls`;
   const tbody = document.getElementById("callTable");
   if(!calls.length){
-    tbody.innerHTML=`<tr class="empty-row"><td colspan="10">No calls ${currentFilter==="today"?"today":"yet"}. Make a test call to see data here.</td></tr>`;
+    tbody.innerHTML=`<tr class="empty-row"><td colspan="10">No calls ${currentFilter==="today"?"today — switch to All Time to see historical data":"yet"}. Make a test call to see data here.</td></tr>`;
     return;
   }
   tbody.innerHTML = calls.map(c=>{
@@ -378,11 +672,12 @@ function renderTable(calls) {
     const isNegotiated = isBooked||c.call_outcome==="no_deal";
     const lb=num(c.loadboard_rate), ag=num(c.agreed_rate);
     const diff = (isBooked&&lb&&ag) ? ((ag-lb)/lb*100).toFixed(1) : null;
+    const isOver = diff!==null && parseFloat(diff)>0;
     const diffStr = diff!==null
-      ? `<span style="color:${parseFloat(diff)>=0?'var(--amber)':'var(--green)'}">${parseFloat(diff)>=0?"+":""}${diff}%</span>`
+      ? `<span style="color:${isOver?'var(--red)':'var(--green)'}">${parseFloat(diff)>=0?"+":""}${diff}%</span>`
       : "—";
     return `<tr>
-      <td class="mono">${c.created_at?new Date(c.created_at).toLocaleString():"—"}</td>
+      <td class="mono">${c.created_at?new Date(c.created_at.includes('Z')?c.created_at:c.created_at+'Z').toLocaleString():"—"}</td>
       <td class="mono">${c.mc_number||"—"}</td>
       <td>${c.carrier_name||"—"}</td>
       <td class="mono">${c.load_id||"—"}</td>
@@ -398,6 +693,8 @@ function renderTable(calls) {
 
 async function load(){
   const calls = await fetchCalls();
+  checkAlerts(calls);
+  renderHero(calls);
   renderKPIs(calls);
   renderCharts(calls);
   renderTable(calls);
