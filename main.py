@@ -18,10 +18,11 @@ async def verify_api_key(key: str = Security(api_key_header)):
     return key
 
 # --- Database Setup ---
+import os
+os.makedirs("data", exist_ok=True)
+
 def get_db():
-    db = sqlite3.connect("calls.db")
-    db.row_factory = sqlite3.Row
-    return db
+    db = sqlite3.connect("data/calls.db")
 
 def init_db():
     db = get_db()
