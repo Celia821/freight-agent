@@ -21,23 +21,28 @@
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;}
-
   .skip-link{position:absolute;top:-100%;left:16px;background:var(--brand);color:#fff;padding:8px 16px;border-radius:4px;font-size:14px;font-weight:600;z-index:9999;}
   .skip-link:focus{top:8px;}
 
-  /* HEADER */
-  header{border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;background:var(--bg);z-index:200;gap:16px;}
+  /* ── HEADER ── */
+  header{border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;position:sticky;top:0;background:var(--bg);z-index:200;gap:16px;flex-wrap:wrap;}
   .header-brand .company{font-size:22px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;}
   .header-brand .subtitle{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;}
-  .header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-  .date-controls{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:6px 12px;}
+  .header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+
+  /* DATE CONTROLS — hidden by default, shown only for custom */
+  .date-controls{display:none;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:6px 12px;}
+  .date-controls.visible{display:flex;}
   .date-controls label{font-size:11px;color:var(--muted);}
   .date-controls input[type="date"]{background:transparent;border:none;color:var(--text-sub);font-family:var(--mono);font-size:12px;cursor:pointer;outline:none;min-width:110px;color-scheme:dark;}
   .date-controls .sep{color:var(--muted);font-size:12px;}
+
+  /* PRESET TABS */
   .preset-tabs{display:flex;gap:4px;}
   .preset-btn{background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--muted);font-family:var(--sans);font-size:12px;font-weight:500;padding:5px 12px;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
   .preset-btn:hover{background:var(--surface2);color:var(--text);}
   .preset-btn.active{background:var(--brand);color:#fff;border-color:var(--brand);}
+  .preset-btn.custom-btn.active{background:var(--purple);border-color:var(--purple);}
   .glossary-btn{background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--muted);font-family:var(--sans);font-size:12px;font-weight:500;padding:5px 12px;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
   .glossary-btn:hover{background:var(--surface2);color:var(--text);}
   .glossary-btn.active{background:var(--purple);color:#fff;border-color:var(--purple);}
@@ -45,38 +50,38 @@
   .live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
 
-  /* GLOSSARY DRAWER */
-  .glossary-drawer{position:fixed;top:68px;right:0;bottom:0;width:480px;background:#141824;border-left:1px solid var(--border);z-index:150;transform:translateX(100%);transition:transform 0.3s ease;overflow-y:auto;padding:28px;}
+  /* ── GLOSSARY DRAWER ── */
+  .glossary-drawer{position:fixed;top:68px;right:0;bottom:0;width:460px;background:#141824;border-left:1px solid var(--border);z-index:150;transform:translateX(100%);transition:transform 0.3s ease;overflow-y:auto;padding:28px;}
   .glossary-drawer.open{transform:translateX(0);}
   .glossary-drawer-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px;}
   .glossary-drawer-sub{font-size:12px;color:var(--muted);margin-bottom:24px;}
-  .gcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin-bottom:12px;}
-  .gcard-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
-  .gcard-plain{font-size:12px;color:var(--amber);margin-bottom:6px;font-style:italic;}
-  .gcard-desc{font-size:12px;color:var(--text-sub);line-height:1.6;margin-bottom:8px;}
-  .gcard-formula{font-family:var(--mono);font-size:10px;color:var(--amber);background:var(--surface2);padding:5px 8px;border-radius:4px;display:block;}
-  .gcard-bench{font-size:11px;color:var(--green);margin-top:6px;}
-  .gcard-dir{font-size:11px;margin-top:4px;font-weight:500;}
+  .gcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;}
+  .gcard-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;}
+  .gcard-plain{font-size:12px;color:var(--amber);margin-bottom:5px;font-style:italic;}
+  .gcard-desc{font-size:12px;color:var(--text-sub);line-height:1.5;margin-bottom:6px;}
+  .gcard-formula{font-family:var(--mono);font-size:10px;color:var(--amber);background:var(--surface2);padding:4px 8px;border-radius:4px;display:block;}
+  .gcard-bench{font-size:11px;color:var(--green);margin-top:5px;}
+  .gcard-dir{font-size:11px;margin-top:3px;font-weight:500;}
   .gcard-dir.higher{color:var(--green);}
   .gcard-dir.lower{color:var(--red);}
 
-  /* PAGE */
+  /* ── PAGE ── */
   .page{max-width:1320px;margin:0 auto;padding:32px 40px;}
   .section-label{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;margin-top:36px;display:flex;align-items:center;gap:10px;}
   .section-label:first-child{margin-top:0;}
   .section-label::after{content:'';flex:1;height:1px;background:var(--border);}
 
-  /* ALERT */
+  /* ── ALERT ── */
   .alert{background:rgba(240,107,107,0.08);border:1px solid rgba(240,107,107,0.3);border-left:3px solid var(--red);border-radius:var(--r);padding:12px 16px;font-size:13px;color:#f9a8a8;margin-bottom:16px;display:none;line-height:1.8;}
 
-  /* EMPTY STATE */
+  /* ── EMPTY STATE ── */
   .empty-state{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:64px 32px;text-align:center;}
   .empty-state-icon{font-size:44px;margin-bottom:16px;}
   .empty-state-title{font-size:18px;font-weight:600;color:var(--text);margin-bottom:8px;}
   .empty-state-sub{font-size:13px;color:var(--muted);line-height:1.7;max-width:420px;margin:0 auto;}
   .empty-state-action{display:inline-block;margin-top:20px;background:var(--brand);color:#fff;border:none;border-radius:8px;padding:9px 22px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);}
 
-  /* HERO */
+  /* ── HERO ── */
   .hero-card{background:linear-gradient(135deg,rgba(79,142,247,0.1),rgba(79,142,247,0.03));border:1px solid rgba(79,142,247,0.25);border-radius:12px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
   .hero-left .hero-label{font-size:12px;color:var(--brand);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:600;}
   .hero-left .hero-value{font-family:var(--mono);font-size:52px;font-weight:500;color:#ffffff;line-height:1;}
@@ -85,7 +90,7 @@
   .hero-stat .lbl{font-size:12px;color:var(--muted);margin-bottom:4px;}
   .hero-stat .val{font-family:var(--mono);font-size:20px;color:var(--text-sub);font-weight:500;}
 
-  /* TOOLTIPS */
+  /* ── TOOLTIPS ── */
   .tip-wrap{position:relative;display:inline-flex;align-items:center;}
   .tip-icon{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:9px;cursor:default;margin-left:5px;flex-shrink:0;}
   .tip-icon:hover{background:var(--brand-dim);color:var(--brand);}
@@ -97,7 +102,7 @@
   .tip-formula{font-family:var(--mono);font-size:10px;color:var(--amber);margin-top:8px;background:var(--surface);padding:4px 8px;border-radius:4px;display:block;}
   .tip-bench{font-size:11px;color:var(--green);margin-top:6px;display:block;}
 
-  /* KPI CARDS */
+  /* ── KPI CARDS ── */
   .kpi-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
   .kpi-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
   .kpi{background:var(--surface);border:1px solid var(--border);border-top-width:3px;border-radius:var(--r);padding:20px 22px;}
@@ -118,32 +123,47 @@
   .kpi-plain{font-size:12px;color:var(--text-sub);font-style:italic;margin-bottom:4px;line-height:1.4;}
   .kpi-sub{font-size:11px;color:var(--muted);}
 
-  /* KPI2 */
+  /* ── KPI2 ── */
   .kpi2-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
   .kpi2{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;display:flex;align-items:center;gap:14px;}
   .kpi2-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
   .kpi2-icon.amber {background:var(--amber-dim);}
   .kpi2-icon.green {background:var(--green-dim);}
   .kpi2-icon.blue  {background:var(--brand-dim);}
-  .kpi2-icon.purple{background:var(--purple-dim);}
   .kpi2-body{flex:1;min-width:0;}
   .kpi2-label{font-size:12px;color:var(--muted);margin-bottom:2px;display:flex;align-items:center;font-weight:500;}
   .kpi2-value{font-family:var(--mono);font-size:20px;font-weight:500;color:var(--text);line-height:1.2;}
   .kpi2-plain{font-size:11px;color:var(--text-sub);font-style:italic;margin-top:3px;}
 
-  /* TREND */
-  .trend-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:32px 36px;}
-  .chart-header{margin-bottom:24px;}
-  .chart-title{font-size:15px;font-weight:600;color:var(--text);}
-  .chart-sub{font-size:12px;color:var(--muted);margin-top:4px;}
-  .trend-wrap{position:relative;height:240px;}
-  .single-stat-wrap{height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
-  .single-stat-value{font-family:var(--mono);font-size:72px;font-weight:500;line-height:1;}
-  .single-stat-label{font-size:14px;color:var(--text-sub);}
-  .single-stat-note{font-size:12px;color:var(--muted);font-style:italic;}
+  /* ── MIXED ROW: KPIs left + chart right ── */
+  .mixed-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+  .mixed-row.wide{grid-template-columns:1.1fr 0.9fr;}
 
-  /* BI GRID */
-  .bi-grid-3{display:grid;grid-template-columns:1.2fr 0.8fr 0.8fr;gap:14px;}
+  /* ── TREND ── */
+  .trend-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;}
+  .chart-header{margin-bottom:20px;}
+  .chart-title{font-size:14px;font-weight:600;color:var(--text);}
+  .chart-sub{font-size:12px;color:var(--muted);margin-top:3px;}
+  .trend-wrap{position:relative;height:220px;}
+
+  /* ── CHARTS ── */
+  .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;}
+  .chart-wrap{position:relative;height:200px;display:flex;align-items:center;justify-content:center;}
+  .chart-wrap-tall{position:relative;height:260px;display:flex;align-items:center;justify-content:center;}
+
+  /* ── FUNNEL ── */
+  .funnel-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;}
+  .funnel{display:flex;flex-direction:column;gap:9px;}
+  .funnel-row{display:flex;align-items:center;gap:10px;}
+  .funnel-label{font-size:12px;color:var(--text-sub);width:120px;flex-shrink:0;text-align:right;}
+  .funnel-bar-wrap{flex:1;height:26px;background:var(--surface2);border-radius:5px;overflow:hidden;}
+  .funnel-bar{height:100%;border-radius:5px;transition:width 0.9s ease;display:flex;align-items:center;padding-left:10px;min-width:32px;}
+  .funnel-bar span{font-family:var(--mono);font-size:12px;color:#0f1117;font-weight:600;}
+  .funnel-pct{font-family:var(--mono);font-size:11px;color:var(--muted);width:38px;flex-shrink:0;}
+  .funnel-note{font-size:11px;color:var(--muted);margin-top:12px;font-style:italic;}
+
+  /* ── BI ── */
+  .bi-grid{display:grid;grid-template-columns:1.3fr 0.7fr;gap:14px;}
   .bi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;}
   .bi-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
   .bi-sub{font-size:12px;color:var(--muted);margin-bottom:18px;}
@@ -159,33 +179,29 @@
   .route-ppm{font-family:var(--mono);color:var(--teal);font-size:11px;}
   .empty-bi{text-align:center;padding:32px;color:var(--muted);font-size:13px;}
 
-  /* CHART WRAPS */
-  .equip-wrap{position:relative;height:180px;}
-  .commodity-wrap{position:relative;height:180px;}
+  /* EQUIPMENT LIST — clean ranked list instead of confusing stacked bar */
+  .equip-list{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+  .equip-row{display:flex;flex-direction:column;gap:4px;}
+  .equip-meta{display:flex;justify-content:space-between;align-items:center;}
+  .equip-name{font-size:13px;color:var(--text-sub);font-weight:500;}
+  .equip-nums{font-family:var(--mono);font-size:11px;color:var(--muted);}
+  .equip-bar-wrap{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+  .equip-bar-fill{height:100%;border-radius:4px;transition:width 0.8s ease;}
 
-  /* CHARTS */
-  .charts-grid{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:14px;}
-  .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;}
-  .chart-wrap{position:relative;height:190px;display:flex;align-items:center;justify-content:center;}
+  /* COMMODITY */
+  .commodity-wrap{position:relative;height:200px;}
 
-  /* FUNNEL */
-  .funnel{display:flex;flex-direction:column;gap:9px;}
-  .funnel-row{display:flex;align-items:center;gap:10px;}
-  .funnel-label{font-size:12px;color:var(--text-sub);width:120px;flex-shrink:0;text-align:right;}
-  .funnel-bar-wrap{flex:1;height:26px;background:var(--surface2);border-radius:5px;overflow:hidden;}
-  .funnel-bar{height:100%;border-radius:5px;transition:width 0.9s ease;display:flex;align-items:center;padding-left:10px;min-width:32px;}
-  .funnel-bar span{font-family:var(--mono);font-size:12px;color:#0f1117;font-weight:600;}
-  .funnel-pct{font-family:var(--mono);font-size:11px;color:var(--muted);width:38px;flex-shrink:0;}
-  .funnel-note{font-size:11px;color:var(--muted);margin-top:12px;font-style:italic;}
+  /* ── MARGIN ROW ── */
+  .margin-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 
-  /* TABLE */
+  /* ── TABLE ── */
   .table-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
   .table-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
   .table-title{font-size:14px;font-weight:600;color:var(--text);}
   .table-count{font-family:var(--mono);font-size:12px;color:var(--muted);}
   .table-wrap{overflow-x:auto;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  th{text-align:left;padding:11px 14px;color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);white-space:nowrap;}
+  table{width:100%;border-collapse:collapse;font-size:12px;}
+  th{text-align:left;padding:10px 14px;color:var(--muted);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);white-space:nowrap;}
   td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text-sub);white-space:nowrap;}
   tr:last-child td{border-bottom:none;}
   tr:hover td{background:var(--surface2);color:var(--text);}
@@ -202,18 +218,13 @@
   .badge.rejected     {background:var(--red-dim);color:var(--red);}
   .empty-row td{text-align:center;padding:56px;color:var(--muted);font-size:14px;}
 
-  @media(max-width:1200px){
-    .bi-grid-3{grid-template-columns:1fr 1fr;}
-  }
   @media(max-width:1100px){
-    .kpi-grid-3,.kpi-grid-4,.kpi2-grid{grid-template-columns:repeat(2,1fr);}
-    .charts-grid{grid-template-columns:1fr 1fr;}
-    .bi-grid-3{grid-template-columns:1fr;}
+    .kpi-grid-3,.kpi-grid-4,.kpi2-grid,.mixed-row,.mixed-row.wide,.bi-grid,.margin-row{grid-template-columns:1fr;}
     .glossary-drawer{width:100%;}
   }
   @media(max-width:700px){
     .page{padding:16px;}
-    header{padding:12px 16px;height:auto;flex-wrap:wrap;}
+    header{padding:12px 16px;height:auto;}
     .kpi-grid-3,.kpi-grid-4,.kpi2-grid{grid-template-columns:1fr;}
     .hero-stats{display:none;}
     .preset-tabs{flex-wrap:wrap;}
@@ -225,21 +236,21 @@
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- GLOSSARY DRAWER -->
-<div class="glossary-drawer" id="glossaryDrawer" role="dialog" aria-label="Metric Definitions">
+<div class="glossary-drawer" id="glossaryDrawer">
   <div class="glossary-drawer-title">📖 Metric Definitions</div>
-  <div class="glossary-drawer-sub">What every number on this dashboard means, how it is calculated, and what good looks like.</div>
-  <div class="gcard"><div class="gcard-name">💵 Total Revenue Booked</div><div class="gcard-plain">"How much did we book?"</div><div class="gcard-desc">Sum of all agreed rates on confirmed loads. The direct financial output of the AI agent for this period.</div><span class="gcard-formula">Σ agreed_rate where outcome = booked</span><div class="gcard-dir higher">↑ Higher is always better</div></div>
-  <div class="gcard"><div class="gcard-name">⚡ Revenue Per Mile</div><div class="gcard-plain">"How efficient is the revenue we're generating?"</div><div class="gcard-desc">The average dollar earned per mile across booked loads. The real profitability metric — a short high-rate load can be worth less than a long medium-rate one.</div><span class="gcard-formula">avg agreed_rate ÷ avg miles on booked loads</span><div class="gcard-bench">Higher = more profitable loads being booked</div><div class="gcard-dir higher">↑ Higher is better</div></div>
-  <div class="gcard"><div class="gcard-name">📈 Booking Rate</div><div class="gcard-plain">"How many calls turn into business?"</div><div class="gcard-desc">Overall conversion across all calls. Includes rejected and unmatched calls so it will always be lower than the close rate — that is normal.</div><span class="gcard-formula">booked ÷ total calls × 100</span><div class="gcard-bench">Industry target: 40–60%</div><div class="gcard-dir higher">↑ Higher is better</div></div>
-  <div class="gcard"><div class="gcard-name">🎯 Close Rate When Negotiating</div><div class="gcard-plain">"When we get to pricing — does the AI close?"</div><div class="gcard-desc">Only counts calls that reached price discussion. The purest measure of AI negotiation quality — no noise from rejections or unmatched loads.</div><span class="gcard-formula">booked ÷ (booked + no deal)</span><div class="gcard-bench">Target: 60%+</div><div class="gcard-dir higher">↑ Higher is better</div></div>
-  <div class="gcard"><div class="gcard-name">😊 Carrier Satisfaction</div><div class="gcard-plain">"Are carriers happy with the experience?"</div><div class="gcard-desc">Carriers who had a positive experience based on tone and language. Happy carriers call back more — directly drives future volume.</div><span class="gcard-formula">positive sentiment ÷ total calls × 100</span><div class="gcard-bench">Target: 70%+</div><div class="gcard-dir higher">↑ Higher is better</div></div>
-  <div class="gcard"><div class="gcard-name">✅ Carrier Verification Rate</div><div class="gcard-plain">"Are the carriers calling us legitimate?"</div><div class="gcard-desc">How many callers passed the FMCSA authority check. A low rate is a lead quality problem — not an AI problem.</div><span class="gcard-formula">eligible ÷ total calls × 100</span><div class="gcard-dir higher">↑ Higher is better</div></div>
-  <div class="gcard"><div class="gcard-name">📦 Load Match Rate</div><div class="gcard-plain">"When a valid carrier calls, can we help them?"</div><div class="gcard-desc">Of verified carriers, how many were matched to an available load. A low rate means inventory gaps — ops needs to add more loads in the lanes being requested.</div><span class="gcard-formula">matched ÷ eligible × 100</span><div class="gcard-dir higher">↑ Higher is better</div></div>
-  <div class="gcard"><div class="gcard-name">⚖️ Avg Load Weight</div><div class="gcard-plain">"How heavy are the loads we're booking?"</div><div class="gcard-desc">Average weight in pounds of booked loads. Heavier loads typically command higher rates. If rates look low relative to weight, the negotiation ceiling may need adjusting.</div><span class="gcard-formula">sum of weight ÷ booked loads</span><div class="gcard-dir higher">↑ Heavier loads should mean higher rates</div></div>
-  <div class="gcard"><div class="gcard-name">🔄 Avg Counter-Offers</div><div class="gcard-plain">"How hard do carriers push back on price?"</div><div class="gcard-desc">Average number of times carriers asked for a different rate. Lower means faster closes. Max allowed is 3 per call.</div><span class="gcard-formula">total counter-offer rounds ÷ negotiated calls</span><div class="gcard-bench">Target: below 1.5</div><div class="gcard-dir lower">↓ Lower is better</div></div>
-  <div class="gcard"><div class="gcard-name">💹 Rate Saved vs Market</div><div class="gcard-plain">"Did we protect our margin?"</div><div class="gcard-desc">Total dollar difference between the listed rate and what we agreed to pay. Positive = saved money vs market. Negative = paid above market.</div><span class="gcard-formula">Σ (listed − agreed) on booked loads</span><div class="gcard-bench">Target: $0 or positive</div><div class="gcard-dir higher">↑ Positive (saved) is better</div></div>
-  <div class="gcard"><div class="gcard-name">🗺️ Top Booked Lanes</div><div class="gcard-plain">"Where is our business coming from?"</div><div class="gcard-desc">Most frequently booked origin → destination pairs. High-volume lanes should always have loads available. The $/mile column shows which lanes are most profitable.</div><span class="gcard-formula">count of booked calls per lane + avg $/mile per lane</span><div class="gcard-dir higher">↑ More bookings + higher $/mile = best lanes</div></div>
-  <div class="gcard"><div class="gcard-name">📦 Commodity Breakdown</div><div class="gcard-plain">"What types of goods are we moving?"</div><div class="gcard-desc">Distribution of booked loads by commodity type. Shows concentration risk — if one commodity dominates, the brokerage is exposed if that market shifts.</div><span class="gcard-formula">count of booked loads per commodity_type</span><div class="gcard-dir higher">↑ Diversification across commodities is healthier</div></div>
+  <div class="glossary-drawer-sub">What every number means, how it is calculated, and what good looks like.</div>
+  <div class="gcard"><div class="gcard-name">💵 Total Revenue Booked</div><div class="gcard-plain">"How much did we book?"</div><div class="gcard-desc">Sum of all agreed rates on confirmed loads. The direct financial output of the AI agent.</div><span class="gcard-formula">Σ agreed_rate where outcome = booked</span><div class="gcard-dir higher">↑ Higher is always better</div></div>
+  <div class="gcard"><div class="gcard-name">⚡ Revenue Per Mile ($/mi)</div><div class="gcard-plain">"How efficient is the revenue we generate?"</div><div class="gcard-desc">Average dollar earned per mile across booked loads. A short high-rate load may be worth less than a long medium-rate one. This is the real profitability metric.</div><span class="gcard-formula">avg agreed_rate ÷ avg miles on booked loads</span><div class="gcard-dir higher">↑ Higher is better</div></div>
+  <div class="gcard"><div class="gcard-name">📈 Booking Rate</div><div class="gcard-plain">"How many calls turn into business?"</div><div class="gcard-desc">Overall conversion across all calls. Includes rejected and unmatched calls so it will always be lower than the close rate — that is expected.</div><span class="gcard-formula">booked ÷ total calls × 100</span><div class="gcard-bench">Target: 40–60%</div><div class="gcard-dir higher">↑ Higher is better</div></div>
+  <div class="gcard"><div class="gcard-name">🎯 Close Rate When Negotiating</div><div class="gcard-plain">"When we get to pricing — does the AI close?"</div><div class="gcard-desc">Only counts calls that reached price discussion with a verified carrier. Removes noise from rejections and unmatched loads.</div><span class="gcard-formula">booked ÷ (booked + no deal)</span><div class="gcard-bench">Target: 60%+</div><div class="gcard-dir higher">↑ Higher is better</div></div>
+  <div class="gcard"><div class="gcard-name">😊 Carrier Satisfaction</div><div class="gcard-plain">"Are verified carriers happy with the experience?"</div><div class="gcard-desc">Only counts carriers who passed FMCSA verification — they are the ones who had a full conversation. Rejected carriers are excluded as they never reached a real interaction.</div><span class="gcard-formula">positive sentiment ÷ eligible calls</span><div class="gcard-bench">Target: 70%+</div><div class="gcard-dir higher">↑ Higher is better</div></div>
+  <div class="gcard"><div class="gcard-name">✅ Carrier Verification Rate</div><div class="gcard-plain">"Are the carriers calling us legitimate?"</div><div class="gcard-desc">How many callers passed the FMCSA government authority check. A low rate is a lead quality problem — not an AI problem.</div><span class="gcard-formula">eligible ÷ total calls</span><div class="gcard-dir higher">↑ Higher is better</div></div>
+  <div class="gcard"><div class="gcard-name">📦 Load Match Rate</div><div class="gcard-plain">"When a valid carrier calls, can we help them?"</div><div class="gcard-desc">Of verified carriers, how many were matched to an available load. A low rate means inventory gaps — ops needs to add loads in the lanes being requested.</div><span class="gcard-formula">matched ÷ eligible × 100</span><div class="gcard-dir higher">↑ Higher is better</div></div>
+  <div class="gcard"><div class="gcard-name">⚖️ Avg Load Weight</div><div class="gcard-plain">"How heavy are the loads we're booking?"</div><div class="gcard-desc">Average weight in pounds of booked loads. Heavier loads typically command higher rates. If rates look low relative to weight, the negotiation ceiling may need adjusting.</div><span class="gcard-formula">sum of weight ÷ booked loads</span></div>
+  <div class="gcard"><div class="gcard-name">🔄 Avg Counter-Offers</div><div class="gcard-plain">"How hard do carriers push back on price?"</div><div class="gcard-desc">Average number of times carriers asked for a different rate before the call ended. Lower means faster closes. Max allowed is 3 per call.</div><span class="gcard-formula">total counter-offer rounds ÷ negotiated calls</span><div class="gcard-bench">Target: below 1.5</div><div class="gcard-dir lower">↓ Lower is better</div></div>
+  <div class="gcard"><div class="gcard-name">💹 Rate Saved vs Market</div><div class="gcard-plain">"Did we protect our margin?"</div><div class="gcard-desc">Total dollar difference between listed rate and what we agreed to pay. Positive = saved money. Negative = overpaid.</div><span class="gcard-formula">Σ (listed − agreed) on booked loads</span><div class="gcard-bench">Target: $0 or positive</div><div class="gcard-dir higher">↑ Positive (saved) is better</div></div>
+  <div class="gcard"><div class="gcard-name">🗺️ Top Booked Lanes</div><div class="gcard-plain">"Where is our business coming from?"</div><div class="gcard-desc">Most frequently booked origin → destination pairs. The $/mi column shows which lanes are most profitable — use this to prioritise inventory.</div><span class="gcard-formula">count per lane + avg agreed_rate ÷ miles</span><div class="gcard-dir higher">↑ More bookings + higher $/mi = best lanes</div></div>
+  <div class="gcard"><div class="gcard-name">📦 Commodity Breakdown</div><div class="gcard-plain">"What types of goods are we moving?"</div><div class="gcard-desc">Distribution of booked loads by commodity type. High concentration in one commodity = exposure if that market shifts.</div><span class="gcard-formula">count of booked loads per commodity_type</span><div class="gcard-dir higher">↑ Diversification across commodities is healthier</div></div>
 </div>
 
 <header role="banner">
@@ -248,18 +259,19 @@
     <div class="subtitle">AI Carrier Operations Dashboard</div>
   </div>
   <div class="header-right">
-    <div class="date-controls" role="group" aria-label="Date filter">
+    <!-- Date controls: only visible when custom is active -->
+    <div class="date-controls" id="dateControls" role="group" aria-label="Custom date range">
       <label for="dateFrom">From</label>
-      <input type="date" id="dateFrom" onchange="setCustomRange()">
+      <input type="date" id="dateFrom" onchange="applyCustomRange()">
       <span class="sep">→</span>
       <label for="dateTo">To</label>
-      <input type="date" id="dateTo" onchange="setCustomRange()">
+      <input type="date" id="dateTo" onchange="applyCustomRange()">
     </div>
     <div class="preset-tabs">
       <button class="preset-btn active" onclick="setPreset('today',this)">Today</button>
       <button class="preset-btn" onclick="setPreset('7d',this)">7 Days</button>
       <button class="preset-btn" onclick="setPreset('30d',this)">30 Days</button>
-      <button class="preset-btn" onclick="setPreset('all',this)">All Time</button>
+      <button class="preset-btn custom-btn" onclick="setPreset('custom',this)">All Time / Custom</button>
       <button class="glossary-btn" id="glossaryToggle" onclick="toggleGlossary()">📖 Glossary</button>
     </div>
     <div class="live-indicator">
@@ -277,13 +289,13 @@
   <div class="empty-state" id="emptyState" style="display:none">
     <div class="empty-state-icon">📞</div>
     <div class="empty-state-title">No calls recorded in this period</div>
-    <div class="empty-state-sub">There is no data to show for the selected date range.<br>Switch to All Time to see historical data, or make a test call to populate the dashboard.</div>
-    <button class="empty-state-action" onclick="switchToAllTime()">View All Time</button>
+    <div class="empty-state-sub">There is no data for the selected date range.<br>Switch to All Time / Custom to see all historical data, or make a test call.</div>
+    <button class="empty-state-action" onclick="setPreset('custom', document.querySelector('.custom-btn'))">View All Time</button>
   </div>
 
   <div id="mainContent">
 
-    <!-- REVENUE HERO -->
+    <!-- 1. REVENUE OVERVIEW -->
     <div class="section-label">Revenue Overview</div>
     <div class="hero-card">
       <div class="hero-left">
@@ -296,173 +308,176 @@
         <div class="hero-stat"><div class="lbl">Avg Per Load</div><div class="val" id="hAvgPerLoad">—</div></div>
         <div class="hero-stat"><div class="lbl">Avg $/Mile</div><div class="val" id="hAvgPPM">—</div></div>
         <div class="hero-stat"><div class="lbl">Total Calls</div><div class="val" id="hTotalCalls">—</div></div>
-        <div class="hero-stat"><div class="lbl">Avg Miles / Load</div><div class="val" id="hAvgMiles">—</div></div>
+        <div class="hero-stat"><div class="lbl">Avg Miles</div><div class="val" id="hAvgMiles">—</div></div>
       </div>
     </div>
 
-    <!-- TREND -->
-    <div class="section-label">Booking Rate Over Time</div>
-    <div class="trend-card">
-      <div class="chart-header">
-        <div class="chart-title">Booking Rate Over Time</div>
-        <div class="chart-sub" id="trendSub">Tracks how consistently the AI converts inbound carrier calls into confirmed load bookings</div>
-      </div>
-      <div id="trendChartWrap" class="trend-wrap"><canvas id="trendChart"></canvas></div>
-      <div id="trendSingleWrap" class="single-stat-wrap" style="display:none">
-        <div class="single-stat-value" id="trendSingleVal">—</div>
-        <div class="single-stat-label">Today's booking rate</div>
-        <div class="single-stat-note">Switch to 7 Days or 30 Days to see the trend over time</div>
+    <!-- 2. TREND — only shown for multi-day views -->
+    <div id="trendSection">
+      <div class="section-label">Booking Rate Over Time</div>
+      <div class="trend-card">
+        <div class="chart-header">
+          <div class="chart-title">Booking Rate Over Time</div>
+          <div class="chart-sub">Tracks how consistently the AI converts inbound carrier calls into confirmed bookings</div>
+        </div>
+        <div class="trend-wrap"><canvas id="trendChart"></canvas></div>
       </div>
     </div>
 
-    <!-- CONVERSION PERFORMANCE -->
+    <!-- 3. CONVERSION + OUTCOME FUNNEL (mixed: numbers left, funnel right) -->
     <div class="section-label">Conversion Performance</div>
-    <div class="kpi-grid-3">
-      <div class="kpi green">
-        <div class="kpi-label">Booking Rate<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Booking Rate</div><div class="tip-body">Out of every call received, how many turned into a confirmed load. Includes all call types.</div><span class="tip-formula">booked ÷ total calls × 100</span><span class="tip-bench">Target: 40–60%</span></div></div></div>
-        <div class="kpi-value" id="kBookingRate">—</div>
-        <div class="kpi-plain" id="kBookingRatePlain"></div>
-        <div class="kpi-sub">of all calls became a booking</div>
-      </div>
-      <div class="kpi teal">
-        <div class="kpi-label">Close Rate When Negotiating<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Close Rate When Negotiating</div><div class="tip-body">When the AI reached price discussion with a valid carrier, how often did it close. Purest measure of negotiation quality.</div><span class="tip-formula">booked ÷ (booked + no deal)</span><span class="tip-bench">Target: 60%+</span></div></div></div>
-        <div class="kpi-value" id="kCloseRate">—</div>
-        <div class="kpi-plain" id="kCloseRatePlain"></div>
-        <div class="kpi-sub">when it came to negotiating</div>
-      </div>
-      <div class="kpi purple">
-        <div class="kpi-label">Carrier Satisfaction<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Carrier Satisfaction</div><div class="tip-body">Carriers who had a positive experience. Happy carriers call back — directly drives future volume.</div><span class="tip-formula">positive sentiment ÷ total calls</span><span class="tip-bench">Target: 70%+</span></div></div></div>
-        <div class="kpi-value" id="kSentiment">—</div>
-        <div class="kpi-plain" id="kSentimentPlain"></div>
-        <div class="kpi-sub">had a positive experience</div>
-      </div>
-    </div>
-
-    <!-- OPERATIONAL HEALTH -->
-    <div class="section-label">Operational Health</div>
-    <div class="kpi-grid-4">
-      <div class="kpi green">
-        <div class="kpi-label">Carrier Verification Rate<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Carrier Verification Rate</div><div class="tip-body">How many callers passed the FMCSA government authority check. A low rate is a lead quality problem — not an AI problem.</div><span class="tip-formula">eligible ÷ total calls</span><span class="tip-bench">Target: 80%+</span></div></div></div>
-        <div class="kpi-value" id="kVerifyPass">—</div>
-        <div class="kpi-plain" id="kVerifyPassPlain"></div>
-        <div class="kpi-sub">passed FMCSA authority check</div>
-      </div>
-      <div class="kpi blue">
-        <div class="kpi-label">Load Match Rate<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Load Match Rate</div><div class="tip-body">Of verified carriers, how many were matched to an available load. A low rate means inventory gaps.</div><span class="tip-formula">matched ÷ eligible calls</span><span class="tip-bench">Target: 80%+</span></div></div></div>
-        <div class="kpi-value" id="kMatchRate">—</div>
-        <div class="kpi-plain" id="kMatchRatePlain"></div>
-        <div class="kpi-sub">valid carriers found a matching load</div>
-      </div>
-      <div class="kpi amber">
-        <div class="kpi-label">Avg Load Weight<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Average Load Weight</div><div class="tip-body">Average weight in pounds of booked loads. Heavier loads typically command higher rates. If rates look low relative to weight, the negotiation ceiling may need adjusting.</div><span class="tip-formula">sum of weight ÷ booked loads</span></div></div></div>
-        <div class="kpi-value" id="kAvgWeight">—</div>
-        <div class="kpi-plain">avg weight per booked load</div>
-        <div class="kpi-sub">pounds</div>
-      </div>
-      <div class="kpi red">
-        <div class="kpi-label">Rejected Carriers<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Rejected Carriers</div><div class="tip-body">Carriers automatically turned away because their FMCSA authority was not valid. A high rate means low-quality inbound leads.</div><span class="tip-formula">ineligible ÷ total calls</span><span class="tip-bench">Target: below 15%</span></div></div></div>
-        <div class="kpi-value" id="kRejected">—</div>
-        <div class="kpi-plain" id="kRejectedPlain"></div>
-        <div class="kpi-sub">failed FMCSA check — turned away</div>
-      </div>
-    </div>
-
-    <!-- NEGOTIATION DETAIL -->
-    <div class="section-label">Negotiation Detail — Booked & No Deal Calls Only</div>
-    <div class="kpi2-grid">
-      <div class="kpi2">
-        <div class="kpi2-icon amber">💰</div>
-        <div class="kpi2-body">
-          <div class="kpi2-label">Avg Agreed Rate<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Average Agreed Rate</div><div class="tip-body">Average dollar amount agreed on booked loads only. No-deal calls excluded.</div><span class="tip-formula">sum of agreed rates ÷ booked calls</span></div></div></div>
-          <div class="kpi2-value" id="kAvgAgreed">—</div>
-          <div class="kpi2-plain">average paid per booked load</div>
+    <div class="mixed-row wide">
+      <!-- Left: 3 KPI cards stacked -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="kpi-grid-3">
+          <div class="kpi green">
+            <div class="kpi-label">Booking Rate<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Booking Rate</div><div class="tip-body">Out of every call received, how many turned into a confirmed load. Includes all call types.</div><span class="tip-formula">booked ÷ total calls × 100</span><span class="tip-bench">Target: 40–60%</span></div></div></div>
+            <div class="kpi-value" id="kBookingRate">—</div>
+            <div class="kpi-plain" id="kBookingRatePlain"></div>
+            <div class="kpi-sub">of all calls became a booking</div>
+          </div>
+          <div class="kpi teal">
+            <div class="kpi-label">Close Rate<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Close Rate When Negotiating</div><div class="tip-body">When the AI reached price discussion with a verified carrier, how often did it close. Removes noise from rejected and unmatched calls.</div><span class="tip-formula">booked ÷ (booked + no deal)</span><span class="tip-bench">Target: 60%+</span></div></div></div>
+            <div class="kpi-value" id="kCloseRate">—</div>
+            <div class="kpi-plain" id="kCloseRatePlain"></div>
+            <div class="kpi-sub">when it came to negotiating</div>
+          </div>
+          <div class="kpi purple">
+            <div class="kpi-label">Carrier Satisfaction<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Carrier Satisfaction</div><div class="tip-body">Only counts verified carriers — those who passed FMCSA and had a full conversation. Rejected carriers are excluded as they never reached a real interaction.</div><span class="tip-formula">positive sentiment ÷ eligible calls</span><span class="tip-bench">Target: 70%+</span></div></div></div>
+            <div class="kpi-value" id="kSentiment">—</div>
+            <div class="kpi-plain" id="kSentimentPlain"></div>
+            <div class="kpi-sub">of verified carriers felt positive</div>
+          </div>
+        </div>
+        <!-- Outcome donut below the 3 KPIs -->
+        <div class="chart-card">
+          <div class="chart-title">Call Outcome Classification</div>
+          <div class="chart-sub">Every call classified by how it ended</div>
+          <div class="chart-wrap"><canvas id="outcomeChart"></canvas></div>
         </div>
       </div>
-      <div class="kpi2">
-        <div class="kpi2-icon blue">🔄</div>
-        <div class="kpi2-body">
-          <div class="kpi2-label">Avg Counter-Offers<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Average Counter-Offers</div><div class="tip-body">How many times carriers pushed back on price. Lower means faster closes. Max 3 per call.</div><span class="tip-formula">total rounds ÷ negotiated calls</span><span class="tip-bench">Target: below 1.5</span></div></div></div>
-          <div class="kpi2-value" id="kAvgRounds">—</div>
-          <div class="kpi2-plain">counter-offers on average</div>
+      <!-- Right: Funnel -->
+      <div class="funnel-card">
+        <div class="chart-title" style="margin-bottom:4px">Conversion Funnel</div>
+        <div class="chart-sub" style="margin-bottom:20px">From incoming call to booked load — where calls drop off</div>
+        <div class="funnel" id="funnelChart"></div>
+      </div>
+    </div>
+
+    <!-- 4. OPERATIONAL OVERVIEW + SENTIMENT (mixed) -->
+    <div class="section-label">Operational Overview</div>
+    <div class="mixed-row">
+      <div class="kpi-grid-4" style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
+        <div class="kpi green">
+          <div class="kpi-label">Carrier Verification Rate<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Carrier Verification Rate</div><div class="tip-body">How many callers passed the FMCSA authority check. A low rate is a lead quality problem — not an AI problem.</div><span class="tip-formula">eligible ÷ total calls</span><span class="tip-bench">Target: 80%+</span></div></div></div>
+          <div class="kpi-value" id="kVerifyPass">—</div>
+          <div class="kpi-plain" id="kVerifyPassPlain"></div>
+          <div class="kpi-sub">passed FMCSA authority check</div>
+        </div>
+        <div class="kpi blue">
+          <div class="kpi-label">Load Match Rate<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Load Match Rate</div><div class="tip-body">Of verified carriers, how many were matched to an available load. A low rate means inventory gaps.</div><span class="tip-formula">matched ÷ eligible calls</span><span class="tip-bench">Target: 80%+</span></div></div></div>
+          <div class="kpi-value" id="kMatchRate">—</div>
+          <div class="kpi-plain" id="kMatchRatePlain"></div>
+          <div class="kpi-sub">valid carriers found a load</div>
+        </div>
+        <div class="kpi amber">
+          <div class="kpi-label">Avg Load Weight<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Average Load Weight</div><div class="tip-body">Average weight in pounds of booked loads. If rates look low relative to weight, the negotiation ceiling may need adjusting.</div><span class="tip-formula">sum of weight ÷ booked loads</span></div></div></div>
+          <div class="kpi-value" id="kAvgWeight">—</div>
+          <div class="kpi-plain">avg weight per booked load</div>
+          <div class="kpi-sub">pounds</div>
+        </div>
+        <div class="kpi red">
+          <div class="kpi-label">Rejected Carriers<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Rejected Carriers</div><div class="tip-body">Carriers automatically turned away because their FMCSA authority was not valid. A high rate means low-quality inbound leads.</div><span class="tip-formula">ineligible ÷ total calls</span><span class="tip-bench">Target: below 15%</span></div></div></div>
+          <div class="kpi-value" id="kRejected">—</div>
+          <div class="kpi-plain" id="kRejectedPlain"></div>
+          <div class="kpi-sub">failed FMCSA — turned away</div>
         </div>
       </div>
-      <div class="kpi2">
-        <div class="kpi2-icon green">⚡</div>
-        <div class="kpi2-body">
-          <div class="kpi2-label">Accepted First Price<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Accepted First Price</div><div class="tip-body">Of booked loads, how many carriers accepted the opening price with no negotiation. High rate = well-calibrated opening offers.</div><span class="tip-formula">zero-round bookings ÷ total booked</span><span class="tip-bench">Target: 40%+</span></div></div></div>
-          <div class="kpi2-value" id="kFirstOffer">—</div>
-          <div class="kpi2-plain">accepted without any counter-offer</div>
+      <!-- Sentiment chart right -->
+      <div class="chart-card">
+        <div class="chart-title">Carrier Sentiment</div>
+        <div class="chart-sub">Verified carriers only — those who passed FMCSA and had a full conversation</div>
+        <div class="chart-wrap-tall"><canvas id="sentimentChart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- 5. NEGOTIATION + MARGIN -->
+    <div class="section-label">Negotiation & Margin</div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="kpi2-grid">
+        <div class="kpi2">
+          <div class="kpi2-icon amber">💰</div>
+          <div class="kpi2-body">
+            <div class="kpi2-label">Avg Agreed Rate<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Average Agreed Rate</div><div class="tip-body">Average dollar amount agreed on booked loads only. No-deal calls excluded.</div><span class="tip-formula">sum of agreed rates ÷ booked calls</span></div></div></div>
+            <div class="kpi2-value" id="kAvgAgreed">—</div>
+            <div class="kpi2-plain">average paid per booked load</div>
+          </div>
+        </div>
+        <div class="kpi2">
+          <div class="kpi2-icon blue">🔄</div>
+          <div class="kpi2-body">
+            <div class="kpi2-label">Avg Counter-Offers<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Average Counter-Offers</div><div class="tip-body">How many times carriers pushed back on price before call ended. Lower means faster closes. Max 3 per call.</div><span class="tip-formula">total rounds ÷ negotiated calls</span><span class="tip-bench">Target: below 1.5</span></div></div></div>
+            <div class="kpi2-value" id="kAvgRounds">—</div>
+            <div class="kpi2-plain">counter-offers on average</div>
+          </div>
+        </div>
+        <div class="kpi2">
+          <div class="kpi2-icon green">⚡</div>
+          <div class="kpi2-body">
+            <div class="kpi2-label">Accepted First Price<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Accepted First Price</div><div class="tip-body">Of booked loads, how many carriers accepted the opening price with no negotiation. High rate = well-calibrated opening offers.</div><span class="tip-formula">zero-round bookings ÷ total booked</span><span class="tip-bench">Target: 40%+</span></div></div></div>
+            <div class="kpi2-value" id="kFirstOffer">—</div>
+            <div class="kpi2-plain">accepted without counter-offer</div>
+          </div>
+        </div>
+      </div>
+      <div class="margin-row" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+        <div class="kpi" id="kMarginCard" style="border-top:3px solid var(--green)">
+          <div class="kpi-label">Avg Rate vs Market<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Avg Rate vs Market</div><div class="tip-body">Did we pay more or less than the listed price? Negative = paid below market = better margin. Positive = overpaid.</div><span class="tip-formula">(agreed − listed) ÷ listed × 100</span><span class="tip-bench">Target: 0% or negative</span></div></div></div>
+          <div class="kpi-value" id="kMargin">—</div>
+          <div class="kpi-plain" id="kMarginPlain"></div>
+          <div class="kpi-sub">vs listed rate on booked loads</div>
+        </div>
+        <div class="kpi amber">
+          <div class="kpi-label">Avg Listed Rate<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Average Listed Rate</div><div class="tip-body">Average market-listed rate for booked loads. Compare to Avg Agreed Rate to see how much the AI moved from the opening position.</div><span class="tip-formula">sum of listed rates ÷ booked calls</span></div></div></div>
+          <div class="kpi-value" id="kAvgListed">—</div>
+          <div class="kpi-plain">average listed market rate</div>
+          <div class="kpi-sub">compare to agreed rate</div>
+        </div>
+        <div class="kpi" id="kSavedCard" style="border-top:3px solid var(--green)">
+          <div class="kpi-label">Rate Saved vs Market<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Rate Saved vs Market</div><div class="tip-body">Total dollar saved or overpaid vs listed rate across all booked loads. Green = saved. Red = overpaid.</div><span class="tip-formula">Σ (listed − agreed) on booked loads</span><span class="tip-bench">Target: positive</span></div></div></div>
+          <div class="kpi-value" id="kRateSaved">—</div>
+          <div class="kpi-plain" id="kRateSavedPlain"></div>
+          <div class="kpi-sub">vs listed market across booked loads</div>
         </div>
       </div>
     </div>
 
-    <!-- MARGIN -->
-    <div class="section-label">Margin Protection</div>
-    <div class="kpi-grid-3">
-      <div class="kpi" id="kMarginCard" style="border-top:3px solid var(--green)">
-        <div class="kpi-label">Avg Rate vs Market<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Avg Rate vs Market</div><div class="tip-body">Did we pay more or less than the listed market price on booked loads? Negative = paid below market = better margin.</div><span class="tip-formula">(agreed − listed) ÷ listed × 100</span><span class="tip-bench">Target: 0% or negative</span></div></div></div>
-        <div class="kpi-value" id="kMargin">—</div>
-        <div class="kpi-plain" id="kMarginPlain"></div>
-        <div class="kpi-sub">vs listed market rate on booked loads</div>
-      </div>
-      <div class="kpi amber">
-        <div class="kpi-label">Avg Listed Rate<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Average Listed Rate</div><div class="tip-body">Average market-listed rate for booked loads. Compare to Avg Agreed Rate to see how much the AI moved from the opening position.</div><span class="tip-formula">sum of listed rates ÷ booked calls</span></div></div></div>
-        <div class="kpi-value" id="kAvgListed">—</div>
-        <div class="kpi-plain">average market price on booked loads</div>
-        <div class="kpi-sub">compare to agreed rate above</div>
-      </div>
-      <div class="kpi" id="kSavedCard" style="border-top:3px solid var(--green)">
-        <div class="kpi-label">Rate Saved vs Market<div class="tip-wrap"><span class="tip-icon">i</span><div class="tip-box"><div class="tip-title">Rate Saved vs Market</div><div class="tip-body">Total dollar amount saved (or overpaid) vs the listed rate across all booked loads. Green = saved money. Red = overpaid.</div><span class="tip-formula">Σ (listed − agreed) on booked loads</span><span class="tip-bench">Target: $0 or positive</span></div></div></div>
-        <div class="kpi-value" id="kRateSaved">—</div>
-        <div class="kpi-plain" id="kRateSavedPlain"></div>
-        <div class="kpi-sub">vs listed market across all booked loads</div>
-      </div>
-    </div>
-
-    <!-- BUSINESS INTELLIGENCE -->
+    <!-- 6. BUSINESS INTELLIGENCE -->
     <div class="section-label">Business Intelligence</div>
-    <div class="bi-grid-3">
+    <div class="bi-grid">
       <div class="bi-card">
         <div class="bi-title">🗺️ Top Booked Lanes</div>
-        <div class="bi-sub">Most booked origin → destination pairs with avg rate and revenue per mile</div>
+        <div class="bi-sub">Most frequently booked routes with average rate and revenue per mile</div>
         <table class="routes-table">
           <thead><tr><th>Lane</th><th>Loads</th><th>Avg Rate</th><th>$/Mile</th></tr></thead>
           <tbody id="routesTable"><tr><td colspan="4" class="empty-bi">No booked loads yet</td></tr></tbody>
         </table>
       </div>
-      <div class="bi-card">
-        <div class="bi-title">🚛 Equipment Demand</div>
-        <div class="bi-sub">Booked vs pitched by equipment type</div>
-        <div class="equip-wrap"><canvas id="equipChart"></canvas></div>
-      </div>
-      <div class="bi-card">
-        <div class="bi-title">📦 Commodity Breakdown</div>
-        <div class="bi-sub">Types of goods booked by the AI agent</div>
-        <div class="commodity-wrap"><canvas id="commodityChart"></canvas></div>
-      </div>
-    </div>
-
-    <!-- OUTCOME BREAKDOWN & FUNNEL -->
-    <div class="section-label">Outcome Breakdown & Funnel</div>
-    <div class="charts-grid">
-      <div class="chart-card">
-        <div class="chart-title">Call Outcome Classification</div>
-        <div class="chart-sub">Every call classified by how it ended</div>
-        <div class="chart-wrap"><canvas id="outcomeChart"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Carrier Sentiment Classification</div>
-        <div class="chart-sub">How carriers felt during each call</div>
-        <div class="chart-wrap"><canvas id="sentimentChart"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Conversion Funnel</div>
-        <div class="chart-sub">From incoming call to booked load</div>
-        <div class="funnel" id="funnelChart"></div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="bi-card">
+          <div class="bi-title">🚛 Equipment Demand</div>
+          <div class="bi-sub">Calls received and loads booked per equipment type</div>
+          <div class="equip-list" id="equipList"></div>
+        </div>
+        <div class="bi-card">
+          <div class="bi-title">📦 Commodity Breakdown</div>
+          <div class="bi-sub">Types of goods booked by the AI agent</div>
+          <div class="commodity-wrap"><canvas id="commodityChart"></canvas></div>
+        </div>
       </div>
     </div>
 
-    <!-- CALL LOG -->
+    <!-- 7. CALL LOG -->
     <div class="section-label">Call Log — Every Call in Detail</div>
     <div class="table-card">
       <div class="table-header">
@@ -475,9 +490,9 @@
             <tr>
               <th>Date & Time</th><th>MC #</th><th>Carrier Name</th>
               <th>Verified</th><th>Lane</th><th>Equipment</th><th>Commodity</th>
-              <th>Weight (lbs)</th><th>Listed</th><th>Agreed</th>
+              <th>Weight</th><th>Listed</th><th>Agreed</th>
               <th>$/Mile</th><th>vs Market</th><th>Rounds</th>
-              <th>Result</th><th>Experience</th>
+              <th>Result</th><th>Sentiment</th>
             </tr>
           </thead>
           <tbody id="callTable">
@@ -495,17 +510,16 @@
 const API_KEY = "freight-secret-2025";
 const API     = window.location.origin;
 
-/* LOADS — enriched with weight, commodity, miles */
 const LOADS = {
-  "LD-001":{ origin:"Chicago, IL",     destination:"Dallas, TX",    equipment:"Dry Van", miles:921,  weight:42000, commodity:"Electronics"   },
-  "LD-002":{ origin:"Atlanta, GA",     destination:"Miami, FL",     equipment:"Reefer",  miles:662,  weight:38000, commodity:"Frozen Food"    },
-  "LD-003":{ origin:"Los Angeles, CA", destination:"Phoenix, AZ",   equipment:"Flatbed", miles:372,  weight:35000, commodity:"Steel Coils"    },
-  "LD-004":{ origin:"Dallas, TX",      destination:"Houston, TX",   equipment:"Dry Van", miles:239,  weight:40000, commodity:"Auto Parts"     },
-  "LD-005":{ origin:"Chicago, IL",     destination:"Detroit, MI",   equipment:"Flatbed", miles:281,  weight:47000, commodity:"Machinery"      },
-  "LD-006":{ origin:"Los Angeles, CA", destination:"Las Vegas, NV", equipment:"Reefer",  miles:270,  weight:36000, commodity:"Fresh Produce"  },
+  "LD-001":{ origin:"Chicago, IL",     destination:"Dallas, TX",    equipment:"Dry Van", miles:921,  weight:42000, commodity:"Electronics"  },
+  "LD-002":{ origin:"Atlanta, GA",     destination:"Miami, FL",     equipment:"Reefer",  miles:662,  weight:38000, commodity:"Frozen Food"  },
+  "LD-003":{ origin:"Los Angeles, CA", destination:"Phoenix, AZ",   equipment:"Flatbed", miles:372,  weight:35000, commodity:"Steel Coils"  },
+  "LD-004":{ origin:"Dallas, TX",      destination:"Houston, TX",   equipment:"Dry Van", miles:239,  weight:40000, commodity:"Auto Parts"   },
+  "LD-005":{ origin:"Chicago, IL",     destination:"Detroit, MI",   equipment:"Flatbed", miles:281,  weight:47000, commodity:"Machinery"    },
+  "LD-006":{ origin:"Los Angeles, CA", destination:"Las Vegas, NV", equipment:"Reefer",  miles:270,  weight:36000, commodity:"Fresh Produce"},
 };
 
-let allCalls=[], trendC, outcomeC, sentimentC, equipC, commodityC;
+let allCalls=[], trendC, outcomeC, sentimentC, commodityC;
 let currentPreset="today", customFrom=null, customTo=null;
 
 async function fetchAllCalls(){
@@ -517,7 +531,13 @@ function parseDate(s){ if(!s)return null; const u=s.includes('Z')||s.includes('+
 
 function filterCalls(calls){
   const now=new Date();
-  if(customFrom&&customTo){ const f=new Date(customFrom),t=new Date(customTo); t.setHours(23,59,59,999); return calls.filter(c=>{const d=parseDate(c.created_at);return d&&d>=f&&d<=t;}); }
+  if(currentPreset==='custom'){
+    if(customFrom&&customTo){
+      const f=new Date(customFrom),t=new Date(customTo); t.setHours(23,59,59,999);
+      return calls.filter(c=>{const d=parseDate(c.created_at);return d&&d>=f&&d<=t;});
+    }
+    return calls; // all time if no custom dates set
+  }
   switch(currentPreset){
     case 'today': return calls.filter(c=>{const d=parseDate(c.created_at);return d&&d.toLocaleDateString()===now.toLocaleDateString();});
     case '7d':  {const f=new Date(now);f.setDate(f.getDate()-6); f.setHours(0,0,0,0);return calls.filter(c=>{const d=parseDate(c.created_at);return d&&d>=f;});}
@@ -527,28 +547,22 @@ function filterCalls(calls){
 }
 
 function setPreset(p,btn){
-  currentPreset=p; customFrom=null; customTo=null;
-  document.getElementById("dateFrom").value="";
-  document.getElementById("dateTo").value="";
+  currentPreset=p;
   document.querySelectorAll(".preset-btn").forEach(b=>{b.classList.remove("active");b.setAttribute("aria-pressed","false");});
   btn.classList.add("active"); btn.setAttribute("aria-pressed","true");
+  // Show/hide date controls
+  const dc=document.getElementById("dateControls");
+  if(p==='custom'){ dc.classList.add("visible"); }
+  else{ dc.classList.remove("visible"); customFrom=null; customTo=null; }
   render();
 }
-function setCustomRange(){
+
+function applyCustomRange(){
   customFrom=document.getElementById("dateFrom").value;
-  customTo=document.getElementById("dateTo").value;
-  if(!customFrom||!customTo)return;
-  currentPreset=null;
-  document.querySelectorAll(".preset-btn").forEach(b=>{b.classList.remove("active");b.setAttribute("aria-pressed","false");});
-  render();
+  customTo  =document.getElementById("dateTo").value;
+  if(customFrom&&customTo) render();
 }
-function switchToAllTime(){
-  currentPreset='all'; customFrom=null; customTo=null;
-  document.querySelectorAll(".preset-btn").forEach(b=>{b.classList.remove("active");b.setAttribute("aria-pressed","false");});
-  const allBtn=document.querySelector(".preset-btn:nth-child(4)");
-  if(allBtn){allBtn.classList.add("active");allBtn.setAttribute("aria-pressed","true");}
-  render();
-}
+
 function toggleGlossary(){
   const d=document.getElementById("glossaryDrawer"),b=document.getElementById("glossaryToggle");
   const open=d.classList.toggle("open");
@@ -563,14 +577,12 @@ document.addEventListener('mousemove',function(e){
 });
 
 /* Helpers */
-const pct   =(n,t)=>t?Math.round(n/t*100)+"%":"0%";
-const pctN  =(n,t)=>t?Math.round(n/t*100):0;
-const money =v=>(v!=null&&v!==""&&!isNaN(v)&&Number(v)>0)?"$"+Number(v).toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:0}):"—";
-const moneyD=v=>(v!=null&&v!==""&&!isNaN(v)&&Number(v)>0)?"$"+Number(v).toFixed(2):"—";
-const num   =v=>{const n=parseFloat(v);return isNaN(n)?null:n;};
-const badge =v=>v?`<span class="badge ${v}">${v.replace(/_/g," ")}</span>`:"—";
-const fmtDt =s=>{if(!s)return"—";const d=parseDate(s);return d?d.toLocaleString(undefined,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}):"—";};
-const fmtNum=v=>v!=null?Number(v).toLocaleString():"—";
+const pct  =(n,t)=>t?Math.round(n/t*100)+"%":"0%";
+const pctN =(n,t)=>t?Math.round(n/t*100):0;
+const money=v=>(v!=null&&v!==""&&!isNaN(v)&&Number(v)>0)?"$"+Number(v).toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:0}):"—";
+const num  =v=>{const n=parseFloat(v);return isNaN(n)?null:n;};
+const badge=v=>v?`<span class="badge ${v}">${v.replace(/_/g," ")}</span>`:"—";
+const fmtDt=s=>{if(!s)return"—";const d=parseDate(s);return d?d.toLocaleString(undefined,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}):"—";};
 
 function plain(value,type){
   const v=parseFloat(value);if(isNaN(v))return"";
@@ -578,14 +590,14 @@ function plain(value,type){
   if(type==="close")   return v>=70?"AI closes most deals it negotiates":v>=50?"closes more often than not":"struggling to close — review negotiation";
   if(type==="verify")  return v>=85?"almost all callers are verified":v>=70?"most callers pass verification":"high number of invalid carriers";
   if(type==="match")   return v>=80?"strong inventory coverage":v>=60?"some inventory gaps":"frequent gaps — add more loads";
-  if(type==="sentiment")return v>=70?"carriers are having great experiences":v>=50?"most carriers feel positive":"carriers often frustrated — review agent tone";
+  if(type==="sentiment")return v>=70?"verified carriers are having great experiences":v>=50?"most feel positive":"frequent frustration — review agent tone";
   if(type==="rejected")return v===0?"all callers passed — clean lead source":v<15?"mostly legitimate carriers":v<30?"notable invalid carrier volume":"very high — review your carrier lead sources";
   return"";
 }
 
 function setEmptyState(empty){
-  document.getElementById("emptyState").style.display  =empty?"block":"none";
-  document.getElementById("mainContent").style.display =empty?"none":"block";
+  document.getElementById("emptyState").style.display =empty?"block":"none";
+  document.getElementById("mainContent").style.display=empty?"none":"block";
 }
 
 function checkAlerts(calls){
@@ -594,7 +606,7 @@ function checkAlerts(calls){
   const ip=calls.filter(c=>c.call_outcome==="ineligible").length/t;
   if(ip>0.3) a.push("⚠️ "+Math.round(ip*100)+"% of callers failed FMCSA verification — review inbound lead sources.");
   const el=calls.filter(c=>c.carrier_eligible==="true"||c.carrier_eligible===true);
-  if(el.length){const np=calls.filter(c=>c.call_outcome==="no_load_match").length/el.length;if(np>0.4)a.push("⚠️ "+Math.round(np*100)+"% of valid carriers had no load — add loads in high-demand lanes.");}
+  if(el.length){const np=calls.filter(c=>c.call_outcome==="no_load_match").length/el.length;if(np>0.4)a.push("⚠️ "+Math.round(np*100)+"% of verified carriers had no available load — add loads in high-demand lanes.");}
   const df=calls.filter(c=>c.call_outcome==="booked"&&num(c.agreed_rate)&&num(c.loadboard_rate)).map(c=>((num(c.agreed_rate)-num(c.loadboard_rate))/num(c.loadboard_rate))*100);
   if(df.length){const ad=df.reduce((a,b)=>a+b,0)/df.length;if(ad>5)a.push("⚠️ AI is paying "+ad.toFixed(1)+"% above market — review negotiation ceiling.");}
   if(a.length){b.innerHTML=a.join("<br>");b.style.display="block";}else b.style.display="none";
@@ -606,10 +618,8 @@ function renderHero(calls){
   const tot=ra.reduce((a,b)=>a+b,0);
   const mi=bk.map(c=>LOADS[c.load_id]?.miles).filter(v=>v);
   const avgMi=mi.length?Math.round(mi.reduce((a,b)=>a+b,0)/mi.length):null;
-  // $/mile = avg agreed rate / avg miles
   const ppmPairs=bk.filter(c=>num(c.agreed_rate)&&LOADS[c.load_id]?.miles).map(c=>num(c.agreed_rate)/LOADS[c.load_id].miles);
   const avgPPM=ppmPairs.length?ppmPairs.reduce((a,b)=>a+b,0)/ppmPairs.length:null;
-
   document.getElementById("hRevenue").textContent    =tot?money(tot):"$0";
   document.getElementById("hLoadsBooked").textContent=bk.length||"0";
   document.getElementById("hAvgPerLoad").textContent =ra.length?money(tot/ra.length):"—";
@@ -624,20 +634,22 @@ function renderKPIs(calls){
   const noDeal =calls.filter(c=>c.call_outcome==="no_deal");
   const inelig =calls.filter(c=>c.call_outcome==="ineligible");
   const eligible=calls.filter(c=>c.carrier_eligible==="true"||c.carrier_eligible===true);
-  const positive=calls.filter(c=>c.carrier_sentiment==="positive");
   const negot   =calls.filter(c=>c.call_outcome==="booked"||c.call_outcome==="no_deal");
   const matched =eligible.filter(c=>c.call_outcome!=="no_load_match");
 
+  // CARRIER SATISFACTION: only eligible carriers (verified MC) not all calls
+  const eligPositive=eligible.filter(c=>c.carrier_sentiment==="positive");
+
   const bR=pctN(booked.length,total);
   const cR=pctN(booked.length,booked.length+noDeal.length);
-  const sR=pctN(positive.length,total);
+  const sR=pctN(eligPositive.length,eligible.length); // ← eligible only
   const vR=pctN(eligible.length,total);
   const mR=pctN(matched.length,eligible.length);
   const rR=pctN(inelig.length,total);
 
   document.getElementById("kBookingRate").textContent =bR+"%";
   document.getElementById("kCloseRate").textContent   =(booked.length+noDeal.length)?cR+"%":"—";
-  document.getElementById("kSentiment").textContent   =sR+"%";
+  document.getElementById("kSentiment").textContent   =eligible.length?sR+"%":"—";
   document.getElementById("kVerifyPass").textContent  =vR+"%";
   document.getElementById("kMatchRate").textContent   =eligible.length?mR+"%":"—";
   document.getElementById("kRejected").textContent    =rR+"%";
@@ -648,24 +660,20 @@ function renderKPIs(calls){
   document.getElementById("kMatchRatePlain").textContent   =plain(mR,"match");
   document.getElementById("kRejectedPlain").textContent    =plain(rR,"rejected");
 
-  // Avg weight — booked loads only, from LOADS join
   const weights=booked.map(c=>LOADS[c.load_id]?.weight).filter(v=>v);
-  const avgW=weights.length?Math.round(weights.reduce((a,b)=>a+b,0)/weights.length):null;
-  document.getElementById("kAvgWeight").textContent=avgW?Number(avgW).toLocaleString()+" lbs":"—";
+  document.getElementById("kAvgWeight").textContent=weights.length?Number(Math.round(weights.reduce((a,b)=>a+b,0)/weights.length)).toLocaleString()+" lbs":"—";
 
-  // Negotiation
   const ar=booked.map(c=>num(c.agreed_rate)).filter(v=>v!==null&&v>0);
   document.getElementById("kAvgAgreed").textContent  =ar.length?money(ar.reduce((a,b)=>a+b,0)/ar.length):"—";
   const ro=negot.map(c=>num(c.rounds_of_negotiation)).filter(v=>v!==null);
   document.getElementById("kAvgRounds").textContent  =ro.length?(ro.reduce((a,b)=>a+b,0)/ro.length).toFixed(1)+" rounds":"—";
   document.getElementById("kFirstOffer").textContent =booked.length?pct(booked.filter(c=>num(c.rounds_of_negotiation)===0).length,booked.length)+" of booked":"—";
 
-  // Margin
   const df=booked.filter(c=>num(c.agreed_rate)&&num(c.loadboard_rate)).map(c=>((num(c.agreed_rate)-num(c.loadboard_rate))/num(c.loadboard_rate))*100);
   const ad=df.length?df.reduce((a,b)=>a+b,0)/df.length:null;
   const mEl=document.getElementById("kMargin"),mPl=document.getElementById("kMarginPlain"),mCd=document.getElementById("kMarginCard");
   if(ad!==null){const ov=ad>0;mEl.textContent=(ad>=0?"+":"")+ad.toFixed(1)+"% vs market";mEl.style.color=ov?"var(--red)":"var(--green)";mPl.textContent=ov?"paying above market — margin at risk":"paying at or below market ✓";mPl.style.color=ov?"var(--red)":"var(--green)";mCd.style.borderTopColor=ov?"var(--red)":"var(--green)";}
-  else{mEl.textContent="—";}
+  else mEl.textContent="—";
 
   const lr=booked.map(c=>num(c.loadboard_rate)).filter(v=>v!==null&&v>0);
   document.getElementById("kAvgListed").textContent=lr.length?money(lr.reduce((a,b)=>a+b,0)/lr.length):"—";
@@ -680,32 +688,26 @@ function renderKPIs(calls){
   sCd.style.borderTopColor=savedPos?"var(--green)":"var(--red)";
 }
 
+/* TREND — hidden for today */
 function renderTrend(calls){
+  const isToday=currentPreset==='today';
+  document.getElementById("trendSection").style.display=isToday?"none":"block";
+  if(isToday){ if(trendC){trendC.destroy();trendC=null;} return; }
+
   const days={};
   calls.forEach(c=>{
     const d=parseDate(c.created_at);if(!d)return;
     let key;
-    if(currentPreset==='today') key='Today';
-    else if(currentPreset==='all') key=d.toLocaleDateString(undefined,{month:'short',year:'numeric'});
-    else key=d.toLocaleDateString(undefined,{month:'short',day:'numeric'});
+    if(currentPreset==='custom'&&(!customFrom||!customTo)) key=d.toLocaleDateString(undefined,{month:'short',year:'numeric'});
+    else if(currentPreset==='custom'){ const diff=(new Date(customTo)-new Date(customFrom))/(1000*60*60*24); key=diff>60?d.toLocaleDateString(undefined,{month:'short',year:'numeric'}):d.toLocaleDateString(undefined,{month:'short',day:'numeric'}); }
+    else if(currentPreset==='30d'||currentPreset==='7d') key=d.toLocaleDateString(undefined,{month:'short',day:'numeric'});
+    else key=d.toLocaleDateString(undefined,{month:'short',year:'numeric'});
     if(!days[key]) days[key]={total:0,booked:0};
     days[key].total++;
     if(c.call_outcome==="booked") days[key].booked++;
   });
   const labels=Object.keys(days);
   const rates=labels.map(l=>days[l].total?Math.round(days[l].booked/days[l].total*100):0);
-  const chartWrap=document.getElementById("trendChartWrap"),singleWrap=document.getElementById("trendSingleWrap");
-
-  if(currentPreset==='today'||labels.length<=1){
-    chartWrap.style.display="none"; singleWrap.style.display="flex";
-    const rate=rates[0]||0;
-    const el=document.getElementById("trendSingleVal");
-    el.textContent=rate+"%";
-    el.style.color=rate>=50?"var(--green)":rate>=30?"var(--amber)":"var(--red)";
-    if(trendC){trendC.destroy();trendC=null;}
-    return;
-  }
-  chartWrap.style.display="block"; singleWrap.style.display="none";
   if(trendC) trendC.destroy();
   trendC=new Chart(document.getElementById("trendChart"),{
     type:'line',
@@ -714,10 +716,37 @@ function renderTrend(calls){
   });
 }
 
+/* CHARTS */
+function renderCharts(calls){
+  const oc={booked:0,no_deal:0,ineligible:0,no_load_match:0};
+  // SENTIMENT: eligible carriers only
+  const eligible=calls.filter(c=>c.carrier_eligible==="true"||c.carrier_eligible===true);
+  const sc={positive:0,neutral:0,negative:0};
+  calls.forEach(c=>{if(c.call_outcome&&oc[c.call_outcome]!==undefined)oc[c.call_outcome]++;});
+  eligible.forEach(c=>{if(c.carrier_sentiment&&sc[c.carrier_sentiment]!==undefined)sc[c.carrier_sentiment]++;});
+
+  if(outcomeC)   outcomeC.destroy();
+  if(sentimentC) sentimentC.destroy();
+  const donut=(id,labels,data,colors)=>new Chart(document.getElementById(id),{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0,hoverOffset:5}]},options:{cutout:'70%',plugins:{legend:{position:'bottom',labels:{color:'#8b96b4',font:{size:11},padding:12,boxWidth:10}},tooltip:{backgroundColor:'#252d44',titleColor:'#f0f2f8',bodyColor:'#c5cade',borderColor:'#2a3148',borderWidth:1}}}});
+  outcomeC  =donut("outcomeChart",  ["Booked","No Deal","Rejected","No Load"],Object.values(oc),["#34d87a","#f06b6b","#f5b942","#4f8ef7"]);
+  sentimentC=donut("sentimentChart",["Positive","Neutral","Negative"],Object.values(sc),["#34d87a","#8b96b4","#f06b6b"]);
+
+  // Funnel
+  const total=calls.length;
+  const elig =calls.filter(c=>c.carrier_eligible==="true"||c.carrier_eligible===true);
+  const lf   =elig.filter(c=>c.call_outcome!=="no_load_match");
+  const neg  =lf.filter(c=>c.call_outcome==="booked"||c.call_outcome==="no_deal");
+  const bkd  =calls.filter(c=>c.call_outcome==="booked");
+  const steps=[{label:"Calls Received",n:total,color:"#f5b942"},{label:"Auth Verified",n:elig.length,color:"#4f8ef7"},{label:"Load Found",n:lf.length,color:"#b87fff"},{label:"Price Discussed",n:neg.length,color:"#2dd4bf"},{label:"Deal Closed",n:bkd.length,color:"#34d87a"}];
+  const dropped=total-bkd.length;
+  document.getElementById("funnelChart").innerHTML=steps.map(s=>{const w=total?Math.max((s.n/total)*100,4):0;return`<div class="funnel-row"><div class="funnel-label">${s.label}</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:${w}%;background:${s.color}"><span>${s.n}</span></div></div><div class="funnel-pct">${pct(s.n,total)}</div></div>`;}).join("")+(total?`<div class="funnel-note">${dropped} call${dropped!==1?"s":""} did not result in a booking this period.</div>`:"");
+}
+
+/* BI */
 function renderBI(calls){
   const booked=calls.filter(c=>c.call_outcome==="booked"&&c.load_id&&LOADS[c.load_id]);
 
-  // Routes with $/mile
+  // Routes
   const routes={};
   booked.forEach(c=>{
     const l=LOADS[c.load_id];
@@ -729,64 +758,50 @@ function renderBI(calls){
   const sorted=Object.entries(routes).sort((a,b)=>b[1].count-a[1].count).slice(0,6);
   const tbody=document.getElementById("routesTable");
   tbody.innerHTML=sorted.length
-    ?sorted.map(([lane,d])=>{
-        const avgR=d.rates.length?d.rates.reduce((a,b)=>a+b,0)/d.rates.length:null;
-        const ppm=avgR&&d.miles?"$"+(avgR/d.miles).toFixed(2):"—";
-        return`<tr><td><strong style="color:var(--text)">${lane}</strong></td><td><span class="route-count">${d.count}</span></td><td><span class="route-rate">${avgR?money(avgR):"—"}</span></td><td><span class="route-ppm">${ppm}</span></td></tr>`;
-      }).join("")
+    ?sorted.map(([lane,d])=>{const avgR=d.rates.length?d.rates.reduce((a,b)=>a+b,0)/d.rates.length:null;const ppm=avgR&&d.miles?"$"+(avgR/d.miles).toFixed(2):"—";return`<tr><td><strong style="color:var(--text)">${lane}</strong></td><td><span class="route-count">${d.count}</span></td><td><span class="route-rate">${avgR?money(avgR):"—"}</span></td><td><span class="route-ppm">${ppm}</span></td></tr>`;}).join("")
     :`<tr><td colspan="4" class="empty-bi">No booked loads yet in this period</td></tr>`;
 
-  // Equipment
-  const equip={},equipAll={};
-  booked.forEach(c=>{const e=LOADS[c.load_id]?.equipment||"Unknown";equip[e]=(equip[e]||0)+1;});
-  calls.filter(c=>c.load_id&&LOADS[c.load_id]).forEach(c=>{const e=LOADS[c.load_id].equipment;equipAll[e]=(equipAll[e]||0)+1;});
-  if(equipC) equipC.destroy();
-  const eL=Object.keys(equipAll);
-  const eBk=eL.map(l=>equip[l]||0),eTot=eL.map(l=>equipAll[l]);
-  equipC=new Chart(document.getElementById("equipChart"),{
-    type:'bar',
-    data:{labels:eL,datasets:[{label:'Booked',data:eBk,backgroundColor:'rgba(52,216,122,0.75)',borderRadius:4},{label:'Pitched',data:eTot.map((t,i)=>t-eBk[i]),backgroundColor:'rgba(79,142,247,0.3)',borderRadius:4}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8b96b4',font:{size:11},padding:10,boxWidth:10}},tooltip:{backgroundColor:'#252d44',titleColor:'#f0f2f8',bodyColor:'#c5cade',borderColor:'#2a3148',borderWidth:1}},scales:{x:{stacked:true,grid:{color:'rgba(42,49,72,0.5)'},ticks:{color:'#8b96b4',font:{size:11},precision:0}},y:{stacked:true,grid:{display:false},ticks:{color:'#c5cade',font:{size:12}}}}}
-  });
+  // Equipment — clean list with thin bar (all calls for demand, booked for conversion)
+  const equipDemand={}, equipBooked={};
+  calls.filter(c=>c.load_id&&LOADS[c.load_id]).forEach(c=>{const e=LOADS[c.load_id].equipment;equipDemand[e]=(equipDemand[e]||0)+1;});
+  booked.forEach(c=>{const e=LOADS[c.load_id]?.equipment;if(e)equipBooked[e]=(equipBooked[e]||0)+1;});
+  const maxDemand=Math.max(...Object.values(equipDemand),1);
+  const EQUIP_COLORS={"Dry Van":"#34d87a","Reefer":"#4f8ef7","Flatbed":"#f5b942"};
+  const equipList=document.getElementById("equipList");
+  if(Object.keys(equipDemand).length){
+    equipList.innerHTML=Object.entries(equipDemand).sort((a,b)=>b[1]-a[1]).map(([name,total])=>{
+      const booked_count=equipBooked[name]||0;
+      const w=Math.round((total/maxDemand)*100);
+      const color=EQUIP_COLORS[name]||"#8b96b4";
+      return`<div class="equip-row">
+        <div class="equip-meta">
+          <span class="equip-name">${name}</span>
+          <span class="equip-nums">${booked_count} booked / ${total} total calls</span>
+        </div>
+        <div class="equip-bar-wrap">
+          <div class="equip-bar-fill" style="width:${w}%;background:${color}"></div>
+        </div>
+      </div>`;
+    }).join("");
+  } else {
+    equipList.innerHTML='<div class="empty-bi">No data yet</div>';
+  }
 
-  // Commodity breakdown — booked loads only
+  // Commodity
   const commodity={};
   booked.forEach(c=>{const cm=LOADS[c.load_id]?.commodity||"Unknown";commodity[cm]=(commodity[cm]||0)+1;});
   if(commodityC) commodityC.destroy();
   const cL=Object.keys(commodity),cV=Object.values(commodity);
   const COLORS=["#34d87a","#4f8ef7","#f5b942","#b87fff","#2dd4bf","#f06b6b"];
+  const commodityEl=document.getElementById("commodityChart");
   if(cL.length){
-    commodityC=new Chart(document.getElementById("commodityChart"),{
-      type:'doughnut',
-      data:{labels:cL,datasets:[{data:cV,backgroundColor:COLORS.slice(0,cL.length),borderWidth:0,hoverOffset:5}]},
-      options:{cutout:'65%',responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8b96b4',font:{size:10},padding:8,boxWidth:8}},tooltip:{backgroundColor:'#252d44',titleColor:'#f0f2f8',bodyColor:'#c5cade',borderColor:'#2a3148',borderWidth:1}}}
-    });
+    commodityC=new Chart(commodityEl,{type:'doughnut',data:{labels:cL,datasets:[{data:cV,backgroundColor:COLORS.slice(0,cL.length),borderWidth:0,hoverOffset:5}]},options:{cutout:'65%',responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8b96b4',font:{size:10},padding:8,boxWidth:8}},tooltip:{backgroundColor:'#252d44',titleColor:'#f0f2f8',bodyColor:'#c5cade',borderColor:'#2a3148',borderWidth:1}}}});
   } else {
-    const ctx=document.getElementById("commodityChart");
-    ctx.parentElement.innerHTML='<div class="empty-bi" style="padding:60px 0">No booked loads yet</div>';
+    commodityEl.parentElement.innerHTML='<div class="empty-bi" style="padding:40px 0">No booked loads yet</div>';
   }
 }
 
-function renderCharts(calls){
-  const oc={booked:0,no_deal:0,ineligible:0,no_load_match:0};
-  const sc={positive:0,neutral:0,negative:0};
-  calls.forEach(c=>{if(c.call_outcome&&oc[c.call_outcome]!==undefined)oc[c.call_outcome]++;if(c.carrier_sentiment&&sc[c.carrier_sentiment]!==undefined)sc[c.carrier_sentiment]++;});
-  if(outcomeC) outcomeC.destroy();
-  if(sentimentC) sentimentC.destroy();
-  const donut=(id,labels,data,colors)=>new Chart(document.getElementById(id),{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0,hoverOffset:5}]},options:{cutout:'70%',plugins:{legend:{position:'bottom',labels:{color:'#8b96b4',font:{size:11},padding:12,boxWidth:10}},tooltip:{backgroundColor:'#252d44',titleColor:'#f0f2f8',bodyColor:'#c5cade',borderColor:'#2a3148',borderWidth:1}}}});
-  outcomeC  =donut("outcomeChart",  ["Booked","No Deal","Rejected","No Load"],Object.values(oc),["#34d87a","#f06b6b","#f5b942","#4f8ef7"]);
-  sentimentC=donut("sentimentChart",["Positive","Neutral","Negative"],Object.values(sc),["#34d87a","#8b96b4","#f06b6b"]);
-
-  const total=calls.length;
-  const elig=calls.filter(c=>c.carrier_eligible==="true"||c.carrier_eligible===true);
-  const lf  =elig.filter(c=>c.call_outcome!=="no_load_match");
-  const neg =lf.filter(c=>c.call_outcome==="booked"||c.call_outcome==="no_deal");
-  const bkd =calls.filter(c=>c.call_outcome==="booked");
-  const steps=[{label:"Calls Received",n:total,color:"#f5b942"},{label:"Auth Verified",n:elig.length,color:"#4f8ef7"},{label:"Load Found",n:lf.length,color:"#b87fff"},{label:"Price Discussed",n:neg.length,color:"#2dd4bf"},{label:"Deal Closed",n:bkd.length,color:"#34d87a"}];
-  const dropped=total-bkd.length;
-  document.getElementById("funnelChart").innerHTML=steps.map(s=>{const w=total?Math.max((s.n/total)*100,4):0;return`<div class="funnel-row"><div class="funnel-label">${s.label}</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:${w}%;background:${s.color}"><span>${s.n}</span></div></div><div class="funnel-pct">${pct(s.n,total)}</div></div>`;}).join("")+(total?`<div class="funnel-note">${dropped} call${dropped!==1?"s":""} did not result in a booking this period.</div>`:"");
-}
-
+/* TABLE */
 function renderTable(calls){
   document.getElementById("tableCount").textContent=`${calls.length} calls`;
   const tbody=document.getElementById("callTable");
@@ -801,19 +816,16 @@ function renderTable(calls){
     const vb=c.carrier_eligible!=null?`<span class="badge ${el?"verified":"rejected"}">${el?"✓ verified":"✗ rejected"}</span>`:"—";
     const load=LOADS[c.load_id];
     const lane=load?load.origin.split(",")[0]+" → "+load.destination.split(",")[0]:"—";
-    const equip=load?load.equipment:"—";
-    const commodity=load?load.commodity:"—";
-    const weight=load?Number(load.weight).toLocaleString()+" lbs":"—";
-    const ppm=(isB&&ag&&load?.miles)?"$"+(ag/load.miles).toFixed(2)+"/mi":"—";
+    const ppm=(isB&&ag&&load?.miles)?"$"+(ag/load.miles).toFixed(2):"—";
     return`<tr>
       <td class="mono">${fmtDt(c.created_at)}</td>
       <td class="mono">${c.mc_number||"—"}</td>
       <td>${c.carrier_name||"—"}</td>
       <td>${vb}</td>
       <td style="color:var(--text-sub)">${lane}</td>
-      <td>${equip}</td>
-      <td>${commodity}</td>
-      <td class="mono">${weight}</td>
+      <td>${load?load.equipment:"—"}</td>
+      <td>${load?load.commodity:"—"}</td>
+      <td class="mono">${load?Number(load.weight).toLocaleString()+" lbs":"—"}</td>
       <td class="mono">${money(c.loadboard_rate)}</td>
       <td class="mono">${isB?money(c.agreed_rate):"—"}</td>
       <td class="mono" style="color:var(--teal)">${ppm}</td>
@@ -834,8 +846,8 @@ function render(){
     renderHero(calls);
     renderKPIs(calls);
     renderTrend(calls);
-    renderBI(calls);
     renderCharts(calls);
+    renderBI(calls);
     renderTable(calls);
   }
   document.getElementById("lastUpdated").textContent=new Date().toLocaleTimeString();
