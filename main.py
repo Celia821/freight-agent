@@ -99,9 +99,14 @@ async def verify_carrier(mc_number: str):
 def search_loads(origin: str = None, equipment_type: str = None):
     results = loads
     if origin:
-        results = [l for l in results if origin.lower() in l["origin"].lower()]
+        origin_city = origin.split(",")[0].strip().lower()
+        results = [l for l in results if origin_city in l["origin"].lower()]
     if equipment_type:
-        results = [l for l in results if equipment_type.lower() in l["equipment_type"].lower()]
+        # Split by comma in case multiple types passed
+        types = [t.strip().lower() for t in equipment_type.split(",")]
+        results = [l for l in results if any(
+            t in l["equipment_type"].lower() for t in types
+        )]
     return results if results else {"message": "No matching loads found"}
 
 # ================================================
