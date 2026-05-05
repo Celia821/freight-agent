@@ -20,11 +20,12 @@ async def verify_api_key(key: str = Security(api_key_header)):
 
 # --- Database Setup ---
 
-os.makedirs("data", exist_ok=True)
+
 
 def get_db():
     db = sqlite3.connect("data/calls.db")
 
+os.makedirs("data", exist_ok=True)
 def init_db():
     db = get_db()
     db.execute("""
