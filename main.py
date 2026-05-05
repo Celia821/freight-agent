@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from typing import Optional
 import json, httpx, os, sqlite3
 from datetime import datetime
+import os
 
 app = FastAPI()
 
@@ -18,7 +19,7 @@ async def verify_api_key(key: str = Security(api_key_header)):
     return key
 
 # --- Database Setup ---
-import os
+
 os.makedirs("data", exist_ok=True)
 
 def get_db():
