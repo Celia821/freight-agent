@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - API_KEY=freight-secret-2025
+      - FMCSA_KEY=your-fmcsa-key-here
+    volumes:
+      - ./data:/app/data
