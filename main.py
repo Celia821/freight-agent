@@ -6,7 +6,6 @@ from typing import Optional
 import json, httpx, os, sqlite3
 from datetime import datetime
 
-
 app = FastAPI()
 
 # --- Security ---
@@ -19,12 +18,12 @@ async def verify_api_key(key: str = Security(api_key_header)):
     return key
 
 # --- Database Setup ---
-
-
+os.makedirs("data", exist_ok=True)
 
 def get_db():
-    db = sqlite3.connect("calls.db")
-
+    db = sqlite3.connect("data/calls.db")
+    db.row_factory = sqlite3.Row
+    return db
 
 def init_db():
     db = get_db()
@@ -65,7 +64,7 @@ class CallData(BaseModel):
     carrier_sentiment: Optional[str] = None
 
 # ================================================
-# ENDPOINT 1: Verify carrier (called by HappyRobot)
+# ENDPOINT 1: Verify carrier
 # ================================================
 @app.get("/verify-carrier", dependencies=[Depends(verify_api_key)])
 async def verify_carrier(mc_number: str):
@@ -76,7 +75,6 @@ async def verify_carrier(mc_number: str):
             resp = await client.get(url)
         if resp.status_code == 200:
             data = resp.json()
-            # FMCSA sometimes returns a list, sometimes a dict
             content = data.get("content", {})
             if isinstance(content, list):
                 content = content[0] if content else {}
@@ -96,7 +94,7 @@ async def verify_carrier(mc_number: str):
         return {"eligible": False, "carrier_name": None, "status": f"Error: {str(e)}"}
 
 # ================================================
-# ENDPOINT 2: Search loads (called by HappyRobot)
+# ENDPOINT 2: Search loads
 # ================================================
 @app.get("/loads", dependencies=[Depends(verify_api_key)])
 def search_loads(
@@ -118,7 +116,7 @@ def search_loads(
         dest_city = destination.split(",")[0].strip().lower()
         results = [l for l in results if dest_city in l["destination"].lower()]
     if pickup_date:
-        results = [l for l in results if pickup_date.lower() 
+        results = [l for l in results if pickup_date.lower()
                    in l["pickup_datetime"].lower()]
     return results if results else {"message": "No matching loads found"}
 
@@ -158,7 +156,7 @@ def save_call(data: CallData):
     return {"status": "saved"}
 
 # ================================================
-# ENDPOINT 4: Get all calls as JSON (for dashboard)
+# ENDPOINT 4: Get all calls as JSON
 # ================================================
 @app.get("/calls-data", dependencies=[Depends(verify_api_key)])
 def get_calls():
@@ -168,7 +166,7 @@ def get_calls():
     return [dict(row) for row in rows]
 
 # ================================================
-# ENDPOINT 5: The dashboard page (public)
+# ENDPOINT 5: Dashboard page
 # ================================================
 @app.get("/dashboard", response_class=HTMLResponse)
 def dashboard():
