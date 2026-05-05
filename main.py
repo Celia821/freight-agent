@@ -96,17 +96,27 @@ async def verify_carrier(mc_number: str):
 # ENDPOINT 2: Search loads (called by HappyRobot)
 # ================================================
 @app.get("/loads", dependencies=[Depends(verify_api_key)])
-def search_loads(origin: str = None, equipment_type: str = None):
+def search_loads(
+    origin: str = None,
+    equipment_type: str = None,
+    destination: str = None,
+    pickup_date: str = None
+):
     results = loads
     if origin:
         origin_city = origin.split(",")[0].strip().lower()
         results = [l for l in results if origin_city in l["origin"].lower()]
     if equipment_type:
-        # Split by comma in case multiple types passed
         types = [t.strip().lower() for t in equipment_type.split(",")]
         results = [l for l in results if any(
             t in l["equipment_type"].lower() for t in types
         )]
+    if destination:
+        dest_city = destination.split(",")[0].strip().lower()
+        results = [l for l in results if dest_city in l["destination"].lower()]
+    if pickup_date:
+        results = [l for l in results if pickup_date.lower() 
+                   in l["pickup_datetime"].lower()]
     return results if results else {"message": "No matching loads found"}
 
 # ================================================
