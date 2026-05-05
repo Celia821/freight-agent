@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from typing import Optional
 import json, httpx, os, sqlite3
 from datetime import datetime
-import os
+
 
 app = FastAPI()
 
@@ -23,9 +23,9 @@ async def verify_api_key(key: str = Security(api_key_header)):
 
 
 def get_db():
-    db = sqlite3.connect("data/calls.db")
+    db = sqlite3.connect("calls.db")
 
-os.makedirs("data", exist_ok=True)
+
 def init_db():
     db = get_db()
     db.execute("""
