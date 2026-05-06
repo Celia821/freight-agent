@@ -706,7 +706,7 @@ function renderTrend(calls){
     days[key].total++;
     if(c.call_outcome==="booked") days[key].booked++;
   });
-  const labels=Object.keys(days);
+  const labels=Object.keys(days).reverse();
   const rates=labels.map(l=>days[l].total?Math.round(days[l].booked/days[l].total*100):0);
   if(trendC) trendC.destroy();
   trendC=new Chart(document.getElementById("trendChart"),{
